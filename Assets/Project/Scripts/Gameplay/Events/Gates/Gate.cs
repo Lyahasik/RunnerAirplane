@@ -13,6 +13,8 @@ namespace RunnerAirplane.Gameplay.Events.Gates
         [Space]
         [SerializeField] private TMP_Text _text;
 
+        private bool _isLocked;
+
         private void Start()
         {
             InitText();
@@ -43,7 +45,12 @@ namespace RunnerAirplane.Gameplay.Events.Gates
 
         public void ProcessingPlayerData(PlayerData playerData)
         {
+            if (_isLocked)
+                return;
+            
             playerData.CalculateNewHealth(_operationType, _value);
+            _isLocked = true;
+            Destroy(gameObject);
         }
         
         private void OnTriggerEnter(Collider other)
@@ -53,7 +60,6 @@ namespace RunnerAirplane.Gameplay.Events.Gates
             if (playerData)
             {
                 ProcessingPlayerData(playerData);
-                Destroy(gameObject);
             }
         }
     }

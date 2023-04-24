@@ -1,8 +1,9 @@
-using RunnerAirplane.Gameplay.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace RunnerAirplane.Core
+using RunnerAirplane.Gameplay.Player;
+
+namespace RunnerAirplane.UI
 {
     public class MobileMovementController : MonoBehaviour, IDragHandler
     {
