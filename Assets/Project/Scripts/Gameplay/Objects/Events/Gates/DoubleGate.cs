@@ -15,7 +15,7 @@ namespace RunnerAirplane.Gameplay.Objects.Events.Gates
             {
                 _leftGate.ProcessingPlayerData(playerData);
             }
-            else if (_rightGate)
+            else if (point.x >= 0f &&_rightGate)
             {
                 _rightGate.ProcessingPlayerData(playerData);
             }
