@@ -1,9 +1,8 @@
+using RunnerAirplane.Gameplay.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-using RunnerAirplane.Gameplay.Player;
-
-namespace RunnerAirplane
+namespace RunnerAirplane.Core
 {
     public class MobileMovementController : MonoBehaviour, IDragHandler
     {
@@ -13,7 +12,9 @@ namespace RunnerAirplane
         public void OnDrag(PointerEventData eventData)
         {
             Vector3 step = new Vector3(eventData.delta.x * _touchSensitivity, 0f, 0f);
-            _playerMovement.TakeStepMove(step);
+            
+            if (_playerMovement)
+                _playerMovement.TakeStepMove(step);
         }
     }
 }
