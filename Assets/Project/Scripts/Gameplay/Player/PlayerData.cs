@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using RunnerAirplane.Gameplay.Objects;
+
 namespace RunnerAirplane.Gameplay.Player
 {
     public class PlayerData : MonoBehaviour
@@ -8,6 +10,8 @@ namespace RunnerAirplane.Gameplay.Player
 
         private int _currentHealth;
         private int _currentEra;
+
+        public int CurrentHealth => _currentHealth;
 
         private void Awake()
         {
@@ -35,6 +39,7 @@ namespace RunnerAirplane.Gameplay.Player
 
         private void UpdateHealth(int value)
         {
+            
             _currentHealth = value;
             
             Debug.Log($"Health {_currentHealth}");

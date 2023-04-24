@@ -1,4 +1,4 @@
-namespace RunnerAirplane.Gameplay
+namespace RunnerAirplane.Gameplay.Objects
 {
     public enum MathOperationType
     {

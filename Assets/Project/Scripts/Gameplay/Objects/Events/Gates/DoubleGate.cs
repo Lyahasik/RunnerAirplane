@@ -2,7 +2,7 @@ using UnityEngine;
 
 using RunnerAirplane.Gameplay.Player;
 
-namespace RunnerAirplane.Gameplay.Events.Gates
+namespace RunnerAirplane.Gameplay.Objects.Events.Gates
 {
     public class DoubleGate : MonoBehaviour
     {

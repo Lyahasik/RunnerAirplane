@@ -3,25 +3,28 @@ using UnityEngine;
 
 using RunnerAirplane.Gameplay.Player;
 
-namespace RunnerAirplane.Gameplay.Events.Gates
+namespace RunnerAirplane.Gameplay.Objects
 {
-    public class Gate : MonoBehaviour
+    public class StatChanger : MonoBehaviour
     {
-        [SerializeField] private MathOperationType _operationType;
-        [SerializeField] private int _value;
+        [SerializeField] protected MathOperationType _operationType;
+        [SerializeField] protected int _value;
 
         [Space]
         [SerializeField] private TMP_Text _text;
 
-        private bool _isLocked;
+        protected bool _isLocked;
 
         private void Start()
         {
             InitText();
         }
 
-        private void InitText()
+        protected virtual void InitText()
         {
+            if (!_text)
+                return;
+            
             string text = "???";
 
             switch (_operationType)
@@ -43,7 +46,7 @@ namespace RunnerAirplane.Gameplay.Events.Gates
             _text.text = text;
         }
 
-        public void ProcessingPlayerData(PlayerData playerData)
+        public virtual void ProcessingPlayerData(PlayerData playerData)
         {
             if (_isLocked)
                 return;
@@ -53,7 +56,7 @@ namespace RunnerAirplane.Gameplay.Events.Gates
             Destroy(gameObject);
         }
         
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             PlayerData playerData = other.GetComponent<PlayerData>();
 
