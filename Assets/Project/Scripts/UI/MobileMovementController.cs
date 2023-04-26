@@ -13,9 +13,12 @@ namespace RunnerAirplane.UI
         public void OnDrag(PointerEventData eventData)
         {
             Vector3 step = new Vector3(eventData.delta.x * _touchSensitivity, 0f, 0f);
-            
-            if (_playerMovement)
+
+            if (_playerMovement
+                && !_playerMovement.IsCombating)
+            {
                 _playerMovement.TakeStepMove(step);
+            }
         }
     }
 }

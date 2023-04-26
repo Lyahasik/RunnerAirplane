@@ -1,0 +1,9 @@
+namespace RunnerAirplane.Gameplay.Bullets
+{
+    public enum BulletType
+    {
+        FakeBullet,
+        FakeRocket,
+        FakeFlyingBomb
+    }
+}

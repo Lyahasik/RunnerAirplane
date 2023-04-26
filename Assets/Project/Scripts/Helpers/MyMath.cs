@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RunnerAirplane
+namespace RunnerAirplane.Helpers
 {
     public static class MyMath
     {

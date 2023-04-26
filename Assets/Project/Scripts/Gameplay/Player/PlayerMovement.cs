@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using RunnerAirplane.Helpers;
+
 namespace RunnerAirplane.Gameplay.Player
 {
     public class PlayerMovement : MonoBehaviour
@@ -11,9 +13,40 @@ namespace RunnerAirplane.Gameplay.Player
         [SerializeField] private float _maxAngle;
         [SerializeField] private float _reverseTurnSpeed;
 
+        [Space]
+        [SerializeField] private float _speedAlignment;
+
+        private bool _isCombating;
+
+        public bool IsCombating
+        {
+            get => _isCombating;
+            set => _isCombating = value;
+        }
+
         private void Update()
         {
+            CenterAlignment();
             ReverseTurn();
+        }
+
+        private void CenterAlignment()
+        {
+            if (!_isCombating
+                || transform.position.x == 0f)
+                return;
+
+            float distance = -transform.position.x;
+            Vector3 direction = (Vector3.right * distance).normalized;
+            
+            Vector3 step = direction * _speedAlignment;
+            if (Mathf.Abs(transform.position.x) < _speedAlignment * Time.deltaTime)
+            {
+                transform.position = new Vector3(0f, transform.position.y, transform.position.z);
+                return;
+            }
+            
+            TakeStepMove(step);
         }
 
         public void TakeStepMove(Vector3 step)
