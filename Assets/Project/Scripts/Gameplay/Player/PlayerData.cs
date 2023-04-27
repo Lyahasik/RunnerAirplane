@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 using RunnerAirplane.Gameplay.Objects;
 
@@ -7,15 +8,31 @@ namespace RunnerAirplane.Gameplay.Player
     public class PlayerData : MonoBehaviour
     {
         [SerializeField] private int _startHealth;
+        [SerializeField] private TMP_Text _textHealth;
 
         private int _currentHealth;
+        private int _temporaryHealth;
         private int _currentEra;
 
         public int CurrentHealth => _currentHealth;
 
+        public int TemporaryHealth
+        {
+            set
+            {
+                _temporaryHealth = value;
+                UpdateHealth(_currentHealth);
+            }
+        }
+
         private void Awake()
         {
             _currentHealth = _startHealth;
+        }
+
+        private void Start()
+        {
+            UpdateHealth(_startHealth);
         }
 
         public void CalculateNewHealth(MathOperationType operationType, int value)
@@ -39,12 +56,12 @@ namespace RunnerAirplane.Gameplay.Player
 
         private void UpdateHealth(int value)
         {
-            
             _currentHealth = value;
-            
-            Debug.Log($"Health {_currentHealth}");
 
-            if (_currentHealth <= 0)
+            int health = _currentHealth - _temporaryHealth;
+            _textHealth.text = health.ToString();
+
+            if (health <= 0)
             {
                 Die();
                 return;

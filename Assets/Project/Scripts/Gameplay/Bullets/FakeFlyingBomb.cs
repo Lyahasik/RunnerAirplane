@@ -5,6 +5,8 @@ namespace RunnerAirplane.Gameplay.Bullets
     [RequireComponent(typeof(Rigidbody))]
     public class FakeFlyingBomb : Bullet
     {
+        private const float _bottomLineDestruction = -10f;
+        
         [SerializeField] private float _distanceExplosion;
         [SerializeField] private float _powerImpulse;
         
@@ -19,8 +21,9 @@ namespace RunnerAirplane.Gameplay.Bullets
 
         private void FixedUpdate()
         {
-            if (Vector3.Distance(_rigidbody.transform.position, _targetTransform.position) <= _distanceExplosion
-                || _rigidbody.transform.position.z < -10f)
+            if (!_targetTransform
+                || Vector3.Distance(_rigidbody.transform.position, _targetTransform.position) <= _distanceExplosion
+                || _rigidbody.transform.position.z < _bottomLineDestruction)
                 Destroy(gameObject);
         }
 

@@ -4,23 +4,39 @@ using RunnerAirplane.Gameplay.Bullets;
 
 namespace RunnerAirplane.Gameplay.Enemies
 {
-    public class AirDefense : Enemy
+    public class AirDefense : FakeEnemy
     {
         [SerializeField] private float _fireDistance;
         [SerializeField] private GameObject _weapon;
+        [SerializeField] private float _delayDamage;
 
         private bool _isEmpty;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             _bulletType = BulletType.FakeRocket;
         }
         
         protected override void Update()
         {
-            Fire();
+            if (!_playerFakeCombat)
+                return;
             
             base.Update();
+
+            UpdateHealth();
+            Fire();
+        }
+        
+        private void UpdateHealth()
+        {
+            if (!_isActiveCombat
+                || _distanceTraveled < 0.98f)
+                return;
+            
+            SetHealth(0);
         }
 
         private void Fire()
@@ -33,8 +49,17 @@ namespace RunnerAirplane.Gameplay.Enemies
 
             Bullet bullet = _poolBullets.GetBullet(BulletType.FakeRocket);
             bullet.Init(_weapon.transform.position, _playerFakeCombat.transform);
+            Invoke(nameof(MakeDamage), _delayDamage);
 
             _isEmpty = true;
+        }
+
+        private void MakeDamage()
+        {
+            if (!_playerFakeCombat)
+                return;
+            
+            _playerFakeCombat.TemporaryHealth = _health;
         }
     }
 }

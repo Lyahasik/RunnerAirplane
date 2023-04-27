@@ -24,7 +24,8 @@ namespace RunnerAirplane.Gameplay.Bullets
             
             transform.position += transform.forward * _speedMove * Time.deltaTime;
             
-            if (Vector3.Distance(transform.position, _targetTransform.position) < _distanceExplosion)
+            if (!_targetTransform
+                || Vector3.Distance(transform.position, _targetTransform.position) < _distanceExplosion)
                 _poolBullets.ReturnBullet(this, BulletType.FakeRocket);
         }
 

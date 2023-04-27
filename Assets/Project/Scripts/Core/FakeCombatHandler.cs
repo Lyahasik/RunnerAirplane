@@ -11,7 +11,7 @@ namespace RunnerAirplane.Core
         [SerializeField] private float _combatDistance;
         
         [SerializeField] private PlayerFakeCombat _playerFakeCombat;
-        [SerializeField] private List<Enemy> _enemies;
+        [SerializeField] private List<FakeEnemy> _enemies;
 
         private void Update()
         {
@@ -20,10 +20,11 @@ namespace RunnerAirplane.Core
 
         private void TryStartCombat()
         {
-            if (_playerFakeCombat.IsActiveCombat)
+            if (!_playerFakeCombat
+                || _playerFakeCombat.IsActiveCombat)
                 return;
             
-            foreach (Enemy enemy in _enemies)
+            foreach (FakeEnemy enemy in _enemies)
             {
                 if (!enemy
                     || enemy.IsActiveCombat)

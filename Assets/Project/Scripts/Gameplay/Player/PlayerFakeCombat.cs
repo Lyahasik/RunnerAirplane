@@ -3,10 +3,12 @@ using UnityEngine;
 using RunnerAirplane.Core.Pool;
 using RunnerAirplane.Gameplay.Bullets;
 using RunnerAirplane.Gameplay.Enemies;
+using RunnerAirplane.Gameplay.Objects;
 
 namespace RunnerAirplane.Gameplay.Player
 {
     [RequireComponent(typeof(PlayerMovement))]
+    [RequireComponent(typeof(PlayerData))]
     public class PlayerFakeCombat : MonoBehaviour
     {
         [SerializeField] private PoolBullets _poolBullets;
@@ -21,7 +23,8 @@ namespace RunnerAirplane.Gameplay.Player
         [SerializeField] private float _delayLaunchBomb;
 
         private PlayerMovement _playerMovement;
-        private Enemy _enemy;
+        private PlayerData _playerData;
+        private FakeEnemy _fakeEnemy;
         private bool _enemyHelicopter;
         private bool _enemyAirDefence;
 
@@ -34,10 +37,16 @@ namespace RunnerAirplane.Gameplay.Player
         private bool _isEmpty;
 
         public bool IsActiveCombat => _isActiveCombat;
+        
+        public int TemporaryHealth
+        {
+            set => _playerData.TemporaryHealth = value;
+        }
 
         private void Awake()
         {
             _playerMovement = GetComponent<PlayerMovement>();
+            _playerData = GetComponent<PlayerData>();
         }
 
         private void Update()
@@ -46,12 +55,12 @@ namespace RunnerAirplane.Gameplay.Player
             FireBombLauncher();
         }
 
-        public bool TryStartCombat(Enemy enemy)
+        public bool TryStartCombat(FakeEnemy fakeEnemy)
         {
-            _enemy = enemy;
-            if (_enemy is Helicopter)
+            _fakeEnemy = fakeEnemy;
+            if (_fakeEnemy is Helicopter)
                 _enemyHelicopter = true;
-            if (_enemy is AirDefense)
+            if (_fakeEnemy is AirDefense)
             {
                 _enemyAirDefence = true;
                 _startLaunchBomb = Time.time + _delayLaunchBomb;
@@ -63,29 +72,31 @@ namespace RunnerAirplane.Gameplay.Player
             return true;
         }
 
-        public void EndCombat()
+        public void EndCombat(int damage)
         {
-            _enemy = null;
+            _fakeEnemy = null;
             _enemyHelicopter = false;
             _enemyAirDefence = false;
             
             _isActiveCombat = false;
             _isEmpty = false;
             _playerMovement.IsCombating = false;
+            _playerData.TemporaryHealth = 0;
+            _playerData.CalculateNewHealth(MathOperationType.Subtraction, damage);
         }
 
         private void FireGun()
         {
             if (!_isActiveCombat
-                || !_enemy
+                || !_fakeEnemy
                 || !_enemyHelicopter
                 || _nextFireTime > Time.time)
                 return;
 
             Bullet bullet1 = _poolBullets.GetBullet(BulletType.FakeBullet);
             Bullet bullet2 = _poolBullets.GetBullet(BulletType.FakeBullet);
-            bullet1.Init(_gun1.transform.position, _enemy.transform);
-            bullet2.Init(_gun2.transform.position, _enemy.transform);
+            bullet1.Init(_gun1.transform.position, _fakeEnemy.transform);
+            bullet2.Init(_gun2.transform.position, _fakeEnemy.transform);
 
             _nextFireTime = Time.time + _shotDelay;
         }
@@ -93,15 +104,14 @@ namespace RunnerAirplane.Gameplay.Player
         private void FireBombLauncher()
         {
             if (!_isActiveCombat
-                || !_enemy
+                || !_fakeEnemy
                 || !_enemyAirDefence
                 || _startLaunchBomb > Time.time
                 || _isEmpty)
                 return;
 
             Bullet bullet = _poolBullets.GetBullet(BulletType.FakeFlyingBomb);
-            bullet.Init(_bombLauncher.transform.position, _enemy.transform);
-            Debug.Log(_isEmpty);
+            bullet.Init(_bombLauncher.transform.position, _fakeEnemy.transform);
             
             _isEmpty = true;
         }
