@@ -14,7 +14,15 @@ namespace RunnerAirplane.Gameplay.Player
         private int _temporaryHealth;
         private int _currentEra;
 
+        private bool _isPresenceDisposableRocket;
+
         public int CurrentHealth => _currentHealth;
+
+        public bool IsPresenceDisposableRocket
+        {
+            get => _isPresenceDisposableRocket;
+            set => _isPresenceDisposableRocket = value;
+        }
 
         public int TemporaryHealth
         {

@@ -19,12 +19,17 @@ namespace RunnerAirplane.Gameplay.Player
         [SerializeField] private float _shotDelay;
         
         [Space]
+        [SerializeField] private GameObject _rocketLauncher;
+        [SerializeField] private float _delayDieEnemy;
+        
+        [Space]
         [SerializeField] private GameObject _bombLauncher;
         [SerializeField] private float _delayLaunchBomb;
 
         private PlayerMovement _playerMovement;
         private PlayerData _playerData;
         private FakeEnemy _fakeEnemy;
+        private FakeEnemy _diedEnemy;
         private bool _enemyHelicopter;
         private bool _enemyAirDefence;
 
@@ -57,7 +62,17 @@ namespace RunnerAirplane.Gameplay.Player
 
         public bool TryStartCombat(FakeEnemy fakeEnemy)
         {
+            if (_diedEnemy == fakeEnemy)
+                return false;
+            
             _fakeEnemy = fakeEnemy;
+            
+            if (_playerData.IsPresenceDisposableRocket)
+            {
+                FireDisposableRocket();
+                return false;
+            }
+            
             if (_fakeEnemy is Helicopter)
                 _enemyHelicopter = true;
             if (_fakeEnemy is AirDefense)
@@ -70,6 +85,20 @@ namespace RunnerAirplane.Gameplay.Player
             _playerMovement.IsCombating = true;
 
             return true;
+        }
+
+        private void FireDisposableRocket()
+        {
+            if (!_fakeEnemy)
+                return;
+
+            Bullet bullet = _poolBullets.GetBullet(BulletType.FakeRocket);
+            bullet.Init(_bombLauncher.transform.position, _fakeEnemy.transform);
+            _fakeEnemy.Die(_delayDieEnemy);
+            _diedEnemy = _fakeEnemy;
+            _fakeEnemy = null;
+            
+            _playerData.IsPresenceDisposableRocket = false;
         }
 
         public void EndCombat(int damage)

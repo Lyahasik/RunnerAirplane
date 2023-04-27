@@ -76,5 +76,10 @@ namespace RunnerAirplane.Gameplay.Enemies
                 Destroy(gameObject);
             }
         }
+
+        public void Die(float delayDie)
+        {
+            Destroy(gameObject, delayDie);
+        }
     }
 }
