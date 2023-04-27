@@ -1,7 +1,9 @@
+using System.Linq;
 using UnityEngine;
 using TMPro;
 
 using RunnerAirplane.Gameplay.Objects;
+using RunnerAirplane.ScriptableObjects;
 
 namespace RunnerAirplane.Gameplay.Player
 {
@@ -9,6 +11,9 @@ namespace RunnerAirplane.Gameplay.Player
     {
         [SerializeField] private int _startHealth;
         [SerializeField] private TMP_Text _textHealth;
+
+        [SerializeField] private ListSelectedEraData _listSelectedEra;
+        private GameObject _currentPrefabEra;
 
         private int _currentHealth;
         private int _temporaryHealth;
@@ -80,7 +85,19 @@ namespace RunnerAirplane.Gameplay.Player
 
         private void UpdateEra()
         {
-            // Debug.Log($"Era {_currentEra}");
+            GameObject prefabEra = _listSelectedEra.ListEra.First(data =>
+            {
+                return _currentHealth >= data.MinValue && _currentHealth <= data.MaxValue;
+            }).Prefab;
+
+            if (prefabEra == _currentPrefabEra)
+                return;
+
+            if (_currentPrefabEra)
+                Destroy(_currentPrefabEra);
+            
+            _currentPrefabEra = Instantiate(prefabEra, transform);
+            _currentPrefabEra.transform.parent = transform;
         }
 
         private void Die()
