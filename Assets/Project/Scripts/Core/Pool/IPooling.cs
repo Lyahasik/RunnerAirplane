@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RunnerAirplane.Core
+namespace RunnerAirplane.Core.Pool
 {
     public interface IPooling
     {

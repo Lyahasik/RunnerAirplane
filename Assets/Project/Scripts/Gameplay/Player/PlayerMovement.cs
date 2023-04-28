@@ -6,7 +6,8 @@ namespace RunnerAirplane.Gameplay.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] private float _rangeMovement;
+        [SerializeField] private float _rangeHorizontalMovement;
+        [SerializeField] private float _rangeVerticalMovement;
         
         [Space]
         [SerializeField] private float _speedTurn;
@@ -16,12 +17,18 @@ namespace RunnerAirplane.Gameplay.Player
         [Space]
         [SerializeField] private float _speedAlignment;
 
-        private bool _isCombating;
+        private bool _isFakeFakeCombating;
+        private bool _isBattle = true;
 
-        public bool IsCombating
+        public bool IsFakeCombating
         {
-            get => _isCombating;
-            set => _isCombating = value;
+            get => _isFakeFakeCombating;
+            set => _isFakeFakeCombating = value;
+        }
+
+        public bool IsBattle
+        {
+            set => _isBattle = value;
         }
 
         private void Update()
@@ -32,7 +39,7 @@ namespace RunnerAirplane.Gameplay.Player
 
         private void CenterAlignment()
         {
-            if (!_isCombating
+            if (!_isFakeFakeCombating
                 || transform.position.x == 0f)
                 return;
 
@@ -55,8 +62,18 @@ namespace RunnerAirplane.Gameplay.Player
             
             TakeStepTurn(step.x);
 
-            float newPositionX = Mathf.Clamp(transform.position.x + step.x, -_rangeMovement, _rangeMovement);
-            Vector3 newPosition = new Vector3(newPositionX, transform.position.y, transform.position.z);
+            float newPositionX = Mathf.Clamp(transform.position.x + step.x, -_rangeHorizontalMovement, _rangeHorizontalMovement);
+            
+            Vector3 newPosition;
+            if (_isBattle)
+            {
+                float newPositionZ = Mathf.Clamp(transform.position.z + step.z, -_rangeVerticalMovement, _rangeVerticalMovement);
+                newPosition = new Vector3(newPositionX, transform.position.y, newPositionZ);
+            }
+            else
+            {
+                newPosition = new Vector3(newPositionX, transform.position.y, transform.position.z);
+            }
             transform.position = newPosition;
         }
 

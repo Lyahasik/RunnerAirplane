@@ -85,10 +85,9 @@ namespace RunnerAirplane.Gameplay.Player
 
         private void UpdateEra()
         {
-            GameObject prefabEra = _listSelectedEra.ListEra.First(data =>
-            {
-                return _currentHealth >= data.MinValue && _currentHealth <= data.MaxValue;
-            }).Prefab;
+            GameObject prefabEra = _listSelectedEra.ListEra
+                .First(data => _currentHealth >= data.MinValue && _currentHealth <= data.MaxValue)
+                .Prefab;
 
             if (prefabEra == _currentPrefabEra)
                 return;

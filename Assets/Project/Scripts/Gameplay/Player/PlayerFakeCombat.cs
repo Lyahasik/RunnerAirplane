@@ -82,7 +82,7 @@ namespace RunnerAirplane.Gameplay.Player
             }
             
             _isActiveCombat = true;
-            _playerMovement.IsCombating = true;
+            _playerMovement.IsFakeCombating = true;
 
             return true;
         }
@@ -109,7 +109,7 @@ namespace RunnerAirplane.Gameplay.Player
             
             _isActiveCombat = false;
             _isEmpty = false;
-            _playerMovement.IsCombating = false;
+            _playerMovement.IsFakeCombating = false;
             _playerData.TemporaryHealth = 0;
             _playerData.CalculateNewHealth(MathOperationType.Subtraction, damage);
         }

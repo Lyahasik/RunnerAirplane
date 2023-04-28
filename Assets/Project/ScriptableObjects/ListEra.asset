@@ -38,6 +38,6 @@ MonoBehaviour:
     Prefab: {fileID: 9126265856463357428, guid: ac990bf944585904a9c82c1d01f1e9db,
       type: 3}
   - MinValue: 301
-    MaxValue: 1000000
+    MaxValue: 10000000
     Prefab: {fileID: 9126265856463357428, guid: a11200884f6711f47b1bb4e855ef0a8d,
       type: 3}
