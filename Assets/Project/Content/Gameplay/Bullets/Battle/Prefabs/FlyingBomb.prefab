@@ -131,8 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fallingSpeed: 10
   _bomb: {fileID: 5935523069507274717}
-  _prefabExplosion: {fileID: 5120154195260220183, guid: 5f4e54e5f4aa42b4e870504db4a697c3,
-    type: 3}
+  _explosionScale: 4
 --- !u!1 &5935523070518080189
 GameObject:
   m_ObjectHideFlags: 0

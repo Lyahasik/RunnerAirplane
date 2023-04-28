@@ -5,17 +5,24 @@ using RunnerAirplane.Gameplay.Player;
 
 namespace RunnerAirplane.Gameplay.Bullets.Battle
 {
-    public class Explosion : MonoBehaviour
+    public class Explosion : Bullet
     {
         [SerializeField] private float _lifeTime;
         private int _damage;
 
         private bool _isHit;
 
-        public void Init(int damage)
+        public override void Init(Vector3 position, int damage = 0)
         {
+            transform.position = position;
+            
             _damage = damage;
-            Destroy(gameObject, _lifeTime);
+            Invoke(nameof(ReturnBullet), _lifeTime);
+        }
+
+        private void ReturnBullet()
+        {
+            _poolBullets.ReturnBullet(this, BulletType.Explosion);
         }
 
         private void MakeDamage(PlayerData playerData)
@@ -35,6 +42,11 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             {
                 MakeDamage(playerData);
             }
+        }
+
+        public override void Reset(Vector3 newPosition)
+        {
+            transform.position = newPosition;
         }
     }
 }

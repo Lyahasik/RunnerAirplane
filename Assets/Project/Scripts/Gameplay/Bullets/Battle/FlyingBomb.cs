@@ -12,7 +12,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         private int _damage;
         [SerializeField] private float _fallingSpeed;
         [SerializeField] private GameObject _bomb;
-        [SerializeField] private Explosion _prefabExplosion;
+        [SerializeField] private float _explosionScale;
         private float _startPositionY;
         
         private bool _isActive;
@@ -54,7 +54,10 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
 
         private void Explosion()
         {
-            Instantiate(_prefabExplosion, transform.position, Quaternion.identity).Init(_damage);
+            Bullet bullet = _poolBullets.GetBullet(BulletType.Explosion);
+            bullet.Init(transform.position, _damage);
+            bullet.transform.localScale = new Vector3(_explosionScale, _explosionScale, _explosionScale);
+            
             _poolBullets.ReturnBullet(this, BulletType.FlyingBomb);
             _bomb.SetActive(false);
         }

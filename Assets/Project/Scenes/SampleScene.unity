@@ -929,6 +929,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bombardment
       objectReference: {fileID: 0}
+    - target: {fileID: 5153048850503291477, guid: 7b6a9d841ce8a3448aac7a177e27982c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5656749960520335246, guid: 7b6a9d841ce8a3448aac7a177e27982c,
         type: 3}
       propertyPath: m_RootOrder
@@ -1146,7 +1151,7 @@ PrefabInstance:
     - target: {fileID: 9139511828774752355, guid: 996e20df6015b134dac5ecc5d99102d0,
         type: 3}
       propertyPath: _bulletsPrefabs.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9139511828774752355, guid: 996e20df6015b134dac5ecc5d99102d0,
         type: 3}
@@ -1167,6 +1172,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _bulletsPrefabs.Array.data[6].Type
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139511828774752355, guid: 996e20df6015b134dac5ecc5d99102d0,
+        type: 3}
+      propertyPath: _bulletsPrefabs.Array.data[7].Type
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9139511828774752355, guid: 996e20df6015b134dac5ecc5d99102d0,
         type: 3}
@@ -1191,6 +1201,12 @@ PrefabInstance:
       propertyPath: _bulletsPrefabs.Array.data[6].Prefab
       value: 
       objectReference: {fileID: 5935523069926051057, guid: ee29011ab871dd444aa42af09b5b94b8,
+        type: 3}
+    - target: {fileID: 9139511828774752355, guid: 996e20df6015b134dac5ecc5d99102d0,
+        type: 3}
+      propertyPath: _bulletsPrefabs.Array.data[7].Prefab
+      value: 
+      objectReference: {fileID: 5120154195260220183, guid: cbcc0367354712948bbe0fbc6e317009,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 996e20df6015b134dac5ecc5d99102d0, type: 3}
