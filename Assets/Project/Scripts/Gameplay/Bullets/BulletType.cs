@@ -6,6 +6,7 @@ namespace RunnerAirplane.Gameplay.Bullets
         FakeRocket,
         FakeFlyingBomb,
         GunBullet,
-        ExplosiveRocket
+        ExplosiveRocket,
+        ExplosiveBullet
     }
 }
