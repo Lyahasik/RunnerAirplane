@@ -19,7 +19,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Fake
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        public override void Init(Vector3 position, Transform targetTransform)
+        public override void Init(Vector3 position, Transform targetTransform, int damage = 0)
         {
             transform.position = position;
             _targetTransform = targetTransform;

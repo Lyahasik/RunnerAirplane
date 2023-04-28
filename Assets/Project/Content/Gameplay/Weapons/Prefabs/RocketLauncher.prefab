@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4509022326109052475}
   - component: {fileID: 4509022326109052420}
   - component: {fileID: 4509022326109052421}
-  - component: {fileID: 4509022326109052474}
+  - component: {fileID: 8396322168271327872}
   m_Layer: 0
-  m_Name: MachineGun
+  m_Name: RocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: da8951d172e02c248a34a3ef67bb32f9, type: 2}
+  - {fileID: 2100000, guid: 6067a7f69e61a454392bed9ef5b2d409, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4509022326109052474
+--- !u!114 &8396322168271327872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,14 +94,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4509022326109052472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d27d83575a3e770469fd30719f084148, type: 3}
+  m_Script: {fileID: 11500000, guid: d325fa9d5bb507d43879a080f60aa908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _poolBullets: {fileID: 0}
-  _bulletType: 3
+  _bulletType: 4
   _muzzle: {fileID: 4509022326133941503}
-  _damage: 10
-  _delayFire: 0.15
+  _damage: 30
+  _delayFire: 3
+  _minDistanceFire: 20
+  _maxDistanceFire: 33
 --- !u!1 &4509022326133941503
 GameObject:
   m_ObjectHideFlags: 0

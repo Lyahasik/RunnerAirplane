@@ -1,25 +1,30 @@
 using UnityEngine;
 
 using RunnerAirplane.Core;
-using RunnerAirplane.Gameplay.Objects;
 using RunnerAirplane.Gameplay.Player;
 
 namespace RunnerAirplane.Gameplay.Bullets.Battle
 {
-    public class GunBullet : Bullet
+    public class ExplosiveRocket : Bullet
     {
+        private const float _explosionDistance = 0.5f;
+        
         private int _damage;
         [SerializeField] private float _speedMove;
+        [SerializeField] private Explosion _prefabExplosion;
 
         private Vector3 _direction;
+        private Vector3 _targetPosition;
 
         private bool _isActive;
 
-        public override void Init(Vector3 position, Vector3 direction, int damage = 0)
+        public override void Init(Vector3 position, Vector3 direction, float distance, int damage = 0)
         {
             _damage = damage;
             transform.position = position;
             transform.LookAt(position + direction);
+
+            _targetPosition = position + transform.forward * distance;
 
             _isActive = true;
         }
@@ -35,6 +40,15 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
                 return;
             
             transform.position += transform.forward * _speedMove * Time.deltaTime;
+            
+            if (Vector3.Distance(transform.position, _targetPosition) < _explosionDistance)
+                Explosion();
+        }
+
+        private void Explosion()
+        {
+            Instantiate(_prefabExplosion, transform.position, Quaternion.identity).Init(_damage);
+            _poolBullets.ReturnBullet(this, BulletType.ExplosiveRocket);
         }
 
         public override void Reset(Vector3 newPosition)
@@ -49,12 +63,11 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             
             if (playerData)
             {
-                playerData.CalculateNewHealth(MathOperationType.Subtraction, _damage);
-                _poolBullets.ReturnBullet(this, BulletType.GunBullet);
+                Explosion();
             }
             else if (other.GetComponent<BattleZone>())
             {
-                _poolBullets.ReturnBullet(this, BulletType.GunBullet);
+                Explosion();
             }
         }
     }

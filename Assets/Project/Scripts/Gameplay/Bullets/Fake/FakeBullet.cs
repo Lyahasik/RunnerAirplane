@@ -12,7 +12,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Fake
 
         private bool _isActive;
 
-        public override void Init(Vector3 position, Transform targetTransform)
+        public override void Init(Vector3 position, Transform targetTransform, int damage = 0)
         {
             transform.position = position;
             _targetTransform = targetTransform;
