@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace RunnerAirplane.Gameplay.Bullets
+namespace RunnerAirplane.Gameplay.Bullets.Fake
 {
-    public class FakeBullet : Bullet
+    public class FakeRocket : Bullet
     {
         [SerializeField] private float _distanceExplosion;
         [SerializeField] private float _speedMove;
@@ -11,6 +11,15 @@ namespace RunnerAirplane.Gameplay.Bullets
         private Transform _targetTransform;
 
         private bool _isActive;
+
+        public override void Init(Vector3 position, Transform targetTransform)
+        {
+            transform.position = position;
+            _targetTransform = targetTransform;
+            transform.LookAt(_targetTransform.position);
+
+            _isActive = true;
+        }
 
         private void Update()
         {
@@ -26,16 +35,7 @@ namespace RunnerAirplane.Gameplay.Bullets
             
             if (!_targetTransform
                 || Vector3.Distance(transform.position, _targetTransform.position) < _distanceExplosion)
-                _poolBullets.ReturnBullet(this, BulletType.FakeBullet);
-        }
-
-        public override void Init(Vector3 position, Transform targetTransform)
-        {
-            transform.position = position;
-            _targetTransform = targetTransform;
-            transform.LookAt(_targetTransform.position);
-
-            _isActive = true;
+                _poolBullets.ReturnBullet(this, BulletType.FakeRocket);
         }
 
         public override void Reset(Vector3 newPosition)
