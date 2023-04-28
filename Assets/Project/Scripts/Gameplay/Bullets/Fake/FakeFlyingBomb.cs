@@ -31,7 +31,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Fake
         {
             if (!_targetTransform
                 || Vector3.Distance(_rigidbody.transform.position, _targetTransform.position) <= _distanceExplosion
-                || _rigidbody.transform.position.z < _bottomLineDestruction)
+                || _rigidbody.transform.position.y < _bottomLineDestruction)
                 Destroy(gameObject);
         }
 

@@ -13,6 +13,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         private int _damage;
         [SerializeField] private float _speedMove;
 
+        private FiringZone _firingZone;
         private Vector3 _direction;
         private Vector3 _targetPosition;
 
@@ -22,6 +23,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         private Vector3 _directionMiniBullet4;
 
         private bool _isActive;
+        private bool _isInsideArea;
 
         private void Awake()
         {
@@ -31,13 +33,15 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             _directionMiniBullet4 = new Vector3(-1f, 0f, -1f).normalized;
         }
 
-        public override void Init(Vector3 position, Vector3 direction, float distance, int damage = 0)
+        public override void Init(FiringZone firingZone, Vector3 position, Vector3 direction, float distance, int damage = 0)
         {
-            _damage = damage;
+            _firingZone = firingZone;
+            
             transform.position = position;
             transform.LookAt(position + direction);
-
             _targetPosition = position + transform.forward * distance;
+            
+            _damage = damage;
 
             _isActive = true;
         }
@@ -53,8 +57,12 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
                 return;
             
             transform.position += transform.forward * _speedMove * Time.deltaTime;
+
+            if (_firingZone.IsInsideArea(transform.position))
+                _isInsideArea = true;
             
-            if (Vector3.Distance(transform.position, _targetPosition) < _explosionDistance)
+            if (Vector3.Distance(transform.position, _targetPosition) < _explosionDistance
+            || _isInsideArea && !_firingZone.IsInsideArea(transform.position))
                 Explosion();
         }
 
@@ -80,6 +88,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         public override void Reset(Vector3 newPosition)
         {
             _isActive = false;
+            _isInsideArea = false;
             transform.position = newPosition;
         }
 
@@ -92,7 +101,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
                 playerData.CalculateNewHealth(MathOperationType.Subtraction, _damage);
                 _poolBullets.ReturnBullet(this, BulletType.ExplosiveBullet);
             }
-            else if (other.GetComponent<BattleZone>())
+            else if (other.GetComponent<BattleBorders>())
             {
                 Explosion();
             }

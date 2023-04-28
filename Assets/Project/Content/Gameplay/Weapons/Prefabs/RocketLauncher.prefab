@@ -102,8 +102,9 @@ MonoBehaviour:
   _muzzle: {fileID: 4509022326133941503}
   _damage: 30
   _delayFire: 3
+  _firingZone: {fileID: 0}
   _minDistanceFire: 20
-  _maxDistanceFire: 33
+  _maxDistanceFire: 40
 --- !u!1 &4509022326133941503
 GameObject:
   m_ObjectHideFlags: 0

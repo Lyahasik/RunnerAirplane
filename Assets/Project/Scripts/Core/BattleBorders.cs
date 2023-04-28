@@ -2,5 +2,5 @@ using UnityEngine;
 
 namespace RunnerAirplane.Core
 {
-    public class BattleZone : MonoBehaviour {}
+    public class BattleBorders : MonoBehaviour {}
 }

@@ -52,7 +52,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
                 playerData.CalculateNewHealth(MathOperationType.Subtraction, _damage);
                 _poolBullets.ReturnBullet(this, BulletType.GunBullet);
             }
-            else if (other.GetComponent<BattleZone>())
+            else if (other.GetComponent<BattleBorders>())
             {
                 _poolBullets.ReturnBullet(this, BulletType.GunBullet);
             }
