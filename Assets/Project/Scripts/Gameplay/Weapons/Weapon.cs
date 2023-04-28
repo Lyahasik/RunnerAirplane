@@ -18,7 +18,7 @@ namespace RunnerAirplane.Gameplay.Weapons
 
         protected bool _isActive = true;
 
-        public bool IsActive
+        public virtual bool IsActive
         {
             set
             {
@@ -27,7 +27,7 @@ namespace RunnerAirplane.Gameplay.Weapons
             }
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             Fire();
         }
