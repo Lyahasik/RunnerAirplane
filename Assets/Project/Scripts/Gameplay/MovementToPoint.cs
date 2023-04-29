@@ -7,6 +7,8 @@ namespace RunnerAirplane.Gameplay
     {
         [SerializeField] private float _speedMove;
         [SerializeField] private Transform[] _positions;
+        [SerializeField] private float _delaySwitch;
+        private float _nextTimeSwitch;
 
         private float _distantionMove;
         private Vector3 _directionMove;
@@ -25,6 +27,9 @@ namespace RunnerAirplane.Gameplay
 
         private void StepMove()
         {
+            if (_nextTimeSwitch > Time.time)
+                return;
+            
             float distantionStep = _speedMove * Time.deltaTime;
             Vector3 step;
             
@@ -52,6 +57,7 @@ namespace RunnerAirplane.Gameplay
             _directionMove = Vector3.Normalize(vectorMove);
             
             _targetId = (_targetId + 1) % _positions.Length;
+            _nextTimeSwitch = Time.time + _delaySwitch;
         }
     }
 }
