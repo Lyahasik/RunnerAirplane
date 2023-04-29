@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace RunnerAirplane.Gameplay.Objects.Obstacles
+namespace RunnerAirplane.Gameplay
 {
     public class MovementToPoint : MonoBehaviour
     {
