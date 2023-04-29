@@ -10,6 +10,7 @@ namespace RunnerAirplane.Gameplay.Bullets
         ExplosiveBullet,
         FlyingBomb,
         Explosion,
-        Laser
+        Laser,
+        HomingRocket
     }
 }

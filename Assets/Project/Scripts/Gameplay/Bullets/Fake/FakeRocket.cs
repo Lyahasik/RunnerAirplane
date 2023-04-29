@@ -7,7 +7,6 @@ namespace RunnerAirplane.Gameplay.Bullets.Fake
         [SerializeField] private float _distanceExplosion;
         [SerializeField] private float _speedMove;
 
-        private Vector3 _direction;
         private Transform _targetTransform;
 
         private bool _isActive;

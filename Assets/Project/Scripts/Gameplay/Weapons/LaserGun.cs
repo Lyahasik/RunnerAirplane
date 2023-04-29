@@ -1,9 +1,8 @@
 using UnityEngine;
 
 using RunnerAirplane.Gameplay.Bullets;
-using RunnerAirplane.Gameplay.Weapons;
 
-namespace RunnerAirplane
+namespace RunnerAirplane.Gameplay.Weapons
 {
     public class LaserGun : Weapon
     {

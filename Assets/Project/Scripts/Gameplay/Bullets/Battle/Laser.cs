@@ -1,10 +1,9 @@
 using UnityEngine;
 
-using RunnerAirplane.Gameplay.Bullets;
 using RunnerAirplane.Gameplay.Objects;
 using RunnerAirplane.Gameplay.Player;
 
-namespace RunnerAirplane
+namespace RunnerAirplane.Gameplay.Bullets.Battle
 {
     [RequireComponent(typeof(Collider))]
     public class Laser : Bullet
