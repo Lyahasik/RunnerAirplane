@@ -24,5 +24,10 @@ namespace RunnerAirplane.Helpers
             
             return Vector3.Angle(worldUp, transformUp) * rezus;
         }
+
+        public static float Rezus(float value)
+        {
+            return value > 0 ? 1 : -1;
+        }
     }
 }

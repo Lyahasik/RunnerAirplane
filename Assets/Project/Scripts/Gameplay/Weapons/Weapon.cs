@@ -16,7 +16,7 @@ namespace RunnerAirplane.Gameplay.Weapons
         [SerializeField] protected float _delayFire;
         protected float _nextFireTime;
 
-        protected bool _isActive = true;
+        protected bool _isActive;
 
         public virtual bool IsActive
         {
