@@ -2,7 +2,7 @@ using UnityEngine;
 
 using RunnerAirplane.Helpers;
 
-namespace RunnerAirplane
+namespace RunnerAirplane.Gameplay.Bosses
 {
     public class TurnRange : MonoBehaviour
     {

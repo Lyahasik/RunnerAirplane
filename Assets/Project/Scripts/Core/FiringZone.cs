@@ -13,7 +13,27 @@ namespace RunnerAirplane.Core
         {
             InitBorders();
         }
-
+        
+    #if UNITY_EDITOR
+        private void Update()
+        {
+            DrawBorders();
+        }
+        
+        private void DrawBorders()
+        {
+            Vector3 leftForwardPoint = new Vector3(_leftBorder, 0f, _forwardBorder);
+            Vector3 leftBackPoint = new Vector3(_leftBorder, 0f, _backBorder);
+            Vector3 rightBackPoint = new Vector3(_rightBorder, 0f, _backBorder);
+            Vector3 rightForwardPoint = new Vector3(_rightBorder, 0f, _forwardBorder);
+            
+            Debug.DrawLine(leftForwardPoint, leftBackPoint, Color.red);
+            Debug.DrawLine(leftBackPoint, rightBackPoint, Color.red);
+            Debug.DrawLine(rightBackPoint, rightForwardPoint, Color.red);
+            Debug.DrawLine(rightForwardPoint, leftForwardPoint, Color.red);
+        }
+    #endif
+        
         private void InitBorders()
         {
             float halfWidth = transform.localScale.x * 0.5f;
