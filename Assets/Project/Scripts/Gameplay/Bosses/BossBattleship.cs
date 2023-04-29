@@ -5,7 +5,7 @@ using RunnerAirplane.Gameplay.Weapons;
 
 namespace RunnerAirplane.Gameplay.Bosses
 {
-    public class Battleship : MonoBehaviour
+    public class BossBattleship : MonoBehaviour
     {
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;

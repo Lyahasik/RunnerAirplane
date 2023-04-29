@@ -14,7 +14,6 @@ namespace RunnerAirplane.Gameplay.Bosses
 
         public bool IsTurning
         {
-            get => _isTurning;
             set
             {
                 _isTurning = value;
