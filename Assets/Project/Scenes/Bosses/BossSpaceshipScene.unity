@@ -1017,7 +1017,7 @@ PrefabInstance:
     - target: {fileID: 2326861136460483569, guid: d3b5e755174b3d844a708cd318366e63,
         type: 3}
       propertyPath: m_Name
-      value: BossBattleship
+      value: BossSpaceship
       objectReference: {fileID: 0}
     - target: {fileID: 2326861136460483572, guid: d3b5e755174b3d844a708cd318366e63,
         type: 3}

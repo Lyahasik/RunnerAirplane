@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RunnerAirplane.Gameplay
@@ -6,8 +7,7 @@ namespace RunnerAirplane.Gameplay
     public class MovementToPoint : MonoBehaviour
     {
         [SerializeField] private float _speedMove;
-        [SerializeField] private Transform[] _positions;
-        [SerializeField] private float _delaySwitch;
+        [SerializeField] private List<PointMovementData> _positions;
         private float _nextTimeSwitch;
 
         private float _distantionMove;
@@ -50,14 +50,14 @@ namespace RunnerAirplane.Gameplay
 
         public void NextTarget()
         {
-            _target = _positions[_targetId];
+            _target = _positions[_targetId].Point;
             
             Vector3 vectorMove = _target.position - transform.position;
             _distantionMove = Vector3.Magnitude(vectorMove);
             _directionMove = Vector3.Normalize(vectorMove);
             
-            _targetId = (_targetId + 1) % _positions.Length;
-            _nextTimeSwitch = Time.time + _delaySwitch;
+            _nextTimeSwitch = Time.time + _positions[_targetId].StopTime;
+            _targetId = (_targetId + 1) % _positions.Count;
         }
     }
 }
