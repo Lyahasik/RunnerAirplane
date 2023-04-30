@@ -1,23 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 using RunnerAirplane.Gameplay.Weapons;
 
 namespace RunnerAirplane.Gameplay.Bosses
 {
-    public class BossAirship : MonoBehaviour
+    public class BossSpaceTank : MonoBehaviour
     {
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
         
         [Space]
-        [SerializeField] private MachineGun _machineGun;
+        [SerializeField] private List<MachineGun> _machineGuns;
         [SerializeField] private float _timeAttack1;
         private float _timeStartAttack1;
         private float _timeEndAttack1;
         private bool _isActiveAttack1;
         
         [Space]
-        [SerializeField] private RocketLauncher _rocketLauncher;
+        [SerializeField] private List<LaserGun> _laserGuns;
         [SerializeField] private float _timeAttack2;
         private float _timeStartAttack2;
         private float _timeEndAttack2;
@@ -44,8 +45,11 @@ namespace RunnerAirplane.Gameplay.Bosses
                 || _timeStartAttack1 > Time.time
                 || _timeStartAttack1 == 0f)
                 return;
-            
-            _machineGun.IsActive = true;
+
+            foreach (MachineGun machineGun in _machineGuns)
+            {
+                machineGun.IsActive = true;
+            }
             _isActiveAttack1 = true;
             
             _timeEndAttack1 = Time.time + _timeAttack1;
@@ -57,7 +61,10 @@ namespace RunnerAirplane.Gameplay.Bosses
                 || _timeEndAttack1 > Time.time)
                 return;
             
-            _machineGun.IsActive = false;
+            foreach (MachineGun machineGun in _machineGuns)
+            {
+                machineGun.IsActive = false;
+            }
             _isActiveAttack1 = false;
 
             _timeStartAttack1 = 0f;
@@ -71,8 +78,11 @@ namespace RunnerAirplane.Gameplay.Bosses
                 || _timeStartAttack2 > Time.time
                 || _timeStartAttack2 == 0f)
                 return;
-            
-            _rocketLauncher.IsActive = true;
+
+            foreach (LaserGun laserGun in _laserGuns)
+            {
+                laserGun.IsActive = true;
+            }
             _isActiveAttack2 = true;
             
             _timeEndAttack2 = Time.time + _timeAttack2;
@@ -83,8 +93,11 @@ namespace RunnerAirplane.Gameplay.Bosses
             if (!_isActiveAttack2
                 || _timeEndAttack2 > Time.time)
                 return;
-            
-            _rocketLauncher.IsActive = false;
+
+            foreach (LaserGun laserGun in _laserGuns)
+            {
+                laserGun.IsActive = false;
+            }
             _isActiveAttack2 = false;
             
             _timeStartAttack1 = Time.time + _rechargeAttack;
