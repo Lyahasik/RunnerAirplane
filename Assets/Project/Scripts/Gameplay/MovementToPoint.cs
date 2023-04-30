@@ -48,7 +48,7 @@ namespace RunnerAirplane.Gameplay
             transform.Translate(step);
         }
 
-        private void NextTarget()
+        public void NextTarget()
         {
             _target = _positions[_targetId];
             

@@ -38,7 +38,7 @@ namespace RunnerAirplane.Gameplay.Weapons
                 return;
 
             _laser = _poolBullets.GetBullet(_bulletType);
-            _laser.Init(_muzzle.transform.position, _damage);
+            _laser.Init(_muzzle.transform.position, -transform.forward, _damage);
             _laser.transform.parent = transform;
         }
 

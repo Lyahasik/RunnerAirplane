@@ -1,16 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 using RunnerAirplane.Gameplay.Weapons;
 
 namespace RunnerAirplane.Gameplay.Bosses
 {
-    public class BossSubmarine : MonoBehaviour
+    public class BossUFO : MonoBehaviour
     {
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
         
         [Space]
-        [SerializeField] private Bombardment _bombardment;
+        [SerializeField] private List<LaserGun> _laserGuns;
         [SerializeField] private float _timeAttack;
         private float _timeStartAttack;
         private float _timeEndAttack;
@@ -23,29 +24,35 @@ namespace RunnerAirplane.Gameplay.Bosses
 
         private void Update()
         {
-            StartFire1();
-            TryEndAttack1();
+            StartFire();
+            TryEndAttack();
         }
 
-        private void StartFire1()
+        private void StartFire()
         {
             if (_isActiveAttack
                 || _timeStartAttack > Time.time)
                 return;
-            
-            _bombardment.IsActive = true;
+
+            foreach (LaserGun laserGun in _laserGuns)
+            {
+                laserGun.IsActive = true;
+            }
             _isActiveAttack = true;
             
             _timeEndAttack = Time.time + _timeAttack;
         }
 
-        private void TryEndAttack1()
+        private void TryEndAttack()
         {
             if (!_isActiveAttack
                 || _timeEndAttack > Time.time)
                 return;
-            
-            _bombardment.IsActive = false;
+
+            foreach (LaserGun laserGun in _laserGuns)
+            {
+                laserGun.IsActive = false;
+            }
             _isActiveAttack = false;
 
             _timeStartAttack = Time.time + _rechargeAttack;

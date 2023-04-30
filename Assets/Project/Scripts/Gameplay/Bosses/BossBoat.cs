@@ -2,7 +2,7 @@ using UnityEngine;
 
 using RunnerAirplane.Gameplay.Weapons;
 
-namespace RunnerAirplane
+namespace RunnerAirplane.Gameplay.Bosses
 {
     public class BossBoat : MonoBehaviour
     {

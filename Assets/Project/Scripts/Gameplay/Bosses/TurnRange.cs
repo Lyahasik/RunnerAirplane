@@ -11,6 +11,7 @@ namespace RunnerAirplane.Gameplay.Bosses
         private float _targetAngle;
 
         private bool _isTurning;
+        [SerializeField] private bool _isCircular;
 
         public bool IsTurning
         {
@@ -38,6 +39,12 @@ namespace RunnerAirplane.Gameplay.Bosses
         {
             if (!_isTurning)
                 return;
+
+            if (_isCircular)
+            {
+                transform.Rotate(Vector3.up * _speedTurn * Time.deltaTime);
+                return;
+            }
             
             float angle = MyMath.RezusAngleTurnInRange(_speedTurn * Time.deltaTime, 
                 Vector3.forward, 
