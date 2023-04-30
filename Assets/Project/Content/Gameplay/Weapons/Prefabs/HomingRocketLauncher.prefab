@@ -132,5 +132,5 @@ MonoBehaviour:
   _bulletType: 9
   _muzzle: {fileID: 8648213801312102094}
   _damage: 30
-  _delayFire: 5
+  _delayFire: 1
   _playerMovement: {fileID: 0}
