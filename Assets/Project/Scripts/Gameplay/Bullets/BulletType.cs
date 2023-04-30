@@ -11,6 +11,7 @@ namespace RunnerAirplane.Gameplay.Bullets
         FlyingBomb,
         Explosion,
         Laser,
-        HomingRocket
+        HomingRocket,
+        Rocket
     }
 }
