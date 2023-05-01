@@ -9,6 +9,7 @@ namespace RunnerAirplane.Gameplay.Weapons
     {
         [SerializeField] protected PoolBullets _poolBullets;
         [SerializeField] protected BulletType _bulletType;
+        [SerializeField] protected bool _isPlayerWeapon;
 
         [Space]
         [SerializeField] protected GameObject _muzzle;
@@ -39,7 +40,7 @@ namespace RunnerAirplane.Gameplay.Weapons
                 return;
 
             Bullet bullet = _poolBullets.GetBullet(_bulletType);
-            bullet.Init(_muzzle.transform.position, _muzzle.transform.forward, _damage);
+            bullet.Init(_muzzle.transform.position, _muzzle.transform.forward, _damage, _isPlayerWeapon);
 
             _nextFireTime = Time.time + _delayFire;
         }

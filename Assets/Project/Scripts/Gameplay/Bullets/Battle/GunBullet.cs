@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using RunnerAirplane.Core;
+using RunnerAirplane.Gameplay.Bosses;
 using RunnerAirplane.Gameplay.Objects;
 using RunnerAirplane.Gameplay.Player;
 
@@ -14,12 +15,15 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         private Vector3 _direction;
 
         private bool _isActive;
+        private bool _isPlayerWeapon;
 
-        public override void Init(Vector3 position, Vector3 direction, int damage = 0)
+        public override void Init(Vector3 position, Vector3 direction, int damage = 0, bool isPlayerWeapon = false)
         {
-            _damage = damage;
             transform.position = position;
             transform.LookAt(position + direction);
+            
+            _damage = damage;
+            _isPlayerWeapon = isPlayerWeapon;
 
             _isActive = true;
         }
@@ -43,18 +47,39 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             transform.position = newPosition;
         }
 
+        private void CheckCollision(Collider other)
+        {
+            if (_isPlayerWeapon)
+            {
+                BossData bossData = other.GetComponent<BossData>();
+            
+                if (bossData)
+                {
+                    bossData.CalculateNewHealth(_damage);
+                    _poolBullets.ReturnBullet(this, BulletType.GunBullet);
+                }
+            }
+            else
+            {
+                PlayerData playerData = other.GetComponent<PlayerData>();
+            
+                if (playerData)
+                {
+                    playerData.CalculateNewHealth(MathOperationType.Subtraction, _damage);
+                    _poolBullets.ReturnBullet(this, BulletType.GunBullet);
+                }
+            }
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            PlayerData playerData = other.GetComponent<PlayerData>();
-            
-            if (playerData)
+            if (other.GetComponent<BattleBorders>())
             {
-                playerData.CalculateNewHealth(MathOperationType.Subtraction, _damage);
                 _poolBullets.ReturnBullet(this, BulletType.GunBullet);
             }
-            else if (other.GetComponent<BattleBorders>())
+            else
             {
-                _poolBullets.ReturnBullet(this, BulletType.GunBullet);
+                CheckCollision(other);
             }
         }
     }

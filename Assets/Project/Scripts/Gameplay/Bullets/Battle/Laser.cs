@@ -25,7 +25,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             _collider = GetComponent<Collider>();
         }
 
-        public override void Init(Vector3 position, Vector3 direction, int damage = 0)
+        public override void Init(Vector3 position, Vector3 direction, int damage = 0, bool isPlayerWeapon = false)
         {
             transform.position = position;
             transform.rotation = Quaternion.LookRotation(direction);

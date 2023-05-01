@@ -13,7 +13,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
 
         private bool _isActive;
 
-        public override void Init(Vector3 position, Vector3 direction, int damage = 0)
+        public override void Init(Vector3 position, Vector3 direction, int damage = 0, bool isPlayerWeapon = false)
         {
             transform.position = position;
             transform.rotation = Quaternion.LookRotation(direction);

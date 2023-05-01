@@ -1253,11 +1253,21 @@ PrefabInstance:
       propertyPath: _startHealth
       value: 351
       objectReference: {fileID: 0}
+    - target: {fileID: 375580081176289928, guid: a7ce7f8af23ea1249a7bbff607114987,
+        type: 3}
+      propertyPath: _poolBullets
+      value: 
+      objectReference: {fileID: 3093050260107249244}
     - target: {fileID: 3026431861878732307, guid: a7ce7f8af23ea1249a7bbff607114987,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5571122738568397420, guid: a7ce7f8af23ea1249a7bbff607114987,
+        type: 3}
+      propertyPath: _poolBullets
+      value: 
+      objectReference: {fileID: 3093050260107249244}
     - target: {fileID: 7949898775609578642, guid: a7ce7f8af23ea1249a7bbff607114987,
         type: 3}
       propertyPath: m_RootOrder
