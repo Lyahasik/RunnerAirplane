@@ -11,7 +11,8 @@ namespace RunnerAirplane.Gameplay.Weapons
         [SerializeField] private float _minDistanceFire;
         [SerializeField] private float _maxDistanceFire;
 
-        private bool _isExplosive;
+        [SerializeField] private bool _isExplosive;
+        
         protected override void Fire()
         {
             if (!_isActive

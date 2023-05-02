@@ -29,5 +29,10 @@ namespace RunnerAirplane.Core
         {
             SceneManager.LoadScene("DemoCombatScene");
         }
+
+        public void StartIndexScene(int index)
+        {
+            SceneManager.LoadScene(index);
+        }
     }
 }

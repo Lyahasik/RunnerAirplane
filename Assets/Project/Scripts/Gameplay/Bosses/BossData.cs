@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace RunnerAirplane.Gameplay.Bosses
 {
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Collider))]
     public class BossData : MonoBehaviour
     {
         [SerializeField] private int _startHealth;

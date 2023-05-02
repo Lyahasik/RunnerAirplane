@@ -11,6 +11,7 @@ namespace RunnerAirplane.Gameplay.Weapons
         protected override void Fire()
         {
             if (!_isActive
+                || !_playerMovement
                 || _nextFireTime > Time.time)
                 return;
 

@@ -17,4 +17,49 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/DemoCombatScene.unity
     guid: ec0e2715b0fd8c744bce98ad3b014a74
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossAirDefenseScene.unity
+    guid: cc88a33a6d131a549aed1e5ef9e2a5d1
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossBattleshipScene.unity
+    guid: aa051986fe801994ab62198cacd8732d
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossHelicopterScene.unity
+    guid: 7b72224f8964b0e4796f2c4a764a36c9
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossTankScene.unity
+    guid: 76519b3535079554d8cda9536982d0f1
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossSubmarineScene.unity
+    guid: f030f28990686d640b87148cc60a0007
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossSpaceFighterScene.unity
+    guid: 8e16ceab6d61c1d45902aa24579dd32f
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossBoatScene.unity
+    guid: 65294a14578a1e34aab3412a2ad16547
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossUFOScene.unity
+    guid: 8253c2bf02c2b654e8dff8437b2449d4
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossSpaceshipScene.unity
+    guid: bacdc194bdf3e1b46a24a2e49362d033
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossBomberScene.unity
+    guid: 6ad1057c51a1e8347b3d5afdb30d3c30
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossAirshipScene.unity
+    guid: a7f8198e2e7177644a1ba42992da8075
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossSpaceTankScene.unity
+    guid: 31d1cda6d8e6359468f0bd4142a83c35
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossDoubleTankScene.unity
+    guid: 29012d2ad76df77499bf1f0fe8abb989
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossBMPScene.unity
+    guid: 59adde97eb850994cbd67cab23e5d5b5
+  - enabled: 1
+    path: Assets/Project/Scenes/Bosses/BossRocketAttackScene.unity
+    guid: 2654f6c99c56dd04ab40378e70b2fdf2
   m_configObjects: {}

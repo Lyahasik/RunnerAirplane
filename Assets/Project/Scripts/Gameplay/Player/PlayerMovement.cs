@@ -7,7 +7,7 @@ namespace RunnerAirplane.Gameplay.Player
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private float _rangeHorizontalMovement;
-        [SerializeField] private float _rangeVerticalMovement;
+        private float _rangeVerticalMovement;
         
         [Space]
         [SerializeField] private float _speedTurn;
@@ -19,6 +19,16 @@ namespace RunnerAirplane.Gameplay.Player
 
         private bool _isFakeFakeCombating;
         private bool _isBattle = true;
+
+        public float RangeHorizontalMovement
+        {
+            set => _rangeHorizontalMovement = value;
+        }
+
+        public float RangeVerticalMovement
+        {
+            set => _rangeVerticalMovement = value;
+        }
 
         public bool IsFakeCombating
         {
