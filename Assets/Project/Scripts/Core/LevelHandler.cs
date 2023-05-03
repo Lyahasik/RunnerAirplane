@@ -47,7 +47,7 @@ namespace RunnerAirplane.Core
             _camera = Camera.main;
             _startCameraPosition = _camera.transform.position;
             _startCameraRotation = _camera.transform.rotation;
-
+            
             _playerMovement = _player.GetComponent<PlayerMovement>();
             _playerAttack = _player.GetComponent<PlayerAttack>();
             

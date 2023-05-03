@@ -44,3 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70cc57d68a68a3d4ab34005c13096cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speedMove: 40
+  _road: {fileID: 0}
+  _battlefield: {fileID: 0}
+  _movingObjects: {fileID: 0}
+  _startBattlePositionZ: 20
+  _battleCameraPosition: {x: 0, y: 27, z: -6}
+  _battleCameraRotation: {x: 70, y: 0, z: 0}
+  _speedChange: 1
+  _player: {fileID: 0}
+  _battleRangeHorizontalMovement: 10
+  _battleRangeVerticalMovement: 16
+  _boss: {fileID: 0}

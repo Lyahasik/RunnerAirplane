@@ -5,7 +5,7 @@ using RunnerAirplane.Gameplay.Weapons;
 namespace RunnerAirplane.Gameplay.Bosses
 {
     [RequireComponent(typeof(TurnRange))]
-    public class BossAirDefense : MonoBehaviour
+    public class BossAirDefense : Boss
     {
         private TurnRange _turnRange;
         [SerializeField] private float _rechargeAttack;
@@ -29,6 +29,24 @@ namespace RunnerAirplane.Gameplay.Bosses
         {
             _turnRange = GetComponent<TurnRange>();
             _timeStartAttack1 = Time.time + _delayStartAttack;
+        }
+
+        private void OnEnable()
+        {
+            StartBattle();
+        }
+
+        private void OnDisable()
+        {
+            EndBattle();
+        }
+
+        public override void StartBattle() {}
+
+        public override void EndBattle()
+        {
+            _machineGun.IsActive = false;
+            _homingRocketLauncher.IsActive = false;
         }
 
         private void Update()
