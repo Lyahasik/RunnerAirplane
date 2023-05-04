@@ -407,8 +407,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 10, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4, y: 10, z: 1}
+  m_Center: {x: 0, y: 0, z: 1}
 --- !u!114 &152089817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c6df25708abb14499a491088d1f0dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rangeHorizontalMovement: 3
+  _rangeHorizontalMovement: 6
   _speedTurn: 10
   _maxAngle: 10
   _reverseTurnSpeed: 15
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2573734da30fd409b4e344e16dc77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 100
+  _startHealth: 20
   _textHealth: {fileID: 4653451137710438894}
   _listSelectedEra: {fileID: 11400000, guid: d7b6e45c2b826044f9e6bbaf3f7e50c6, type: 2}
 --- !u!114 &8339945348571600856
@@ -460,7 +460,7 @@ MonoBehaviour:
   _rocketLauncher: {fileID: 4814208391210752394}
   _delayDieEnemy: 1
   _bombLauncher: {fileID: 8024806378986827991}
-  _delayLaunchBomb: 5
+  _delayLaunchBomb: 2
 --- !u!114 &5896328490497784561
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -538,10 +538,10 @@ MonoBehaviour:
   _textHealth: {fileID: 1373965104603772270}
   _poolBullets: {fileID: 0}
   _combatEndDistance: 0
-  _delayStartFire: 0
+  _delayStartFire: 0.5
   _weapon: {fileID: 6228304222471560714}
   _shotDelay: 0.3
-  _delayDamage: 0
+  _delayDamage: 0.3
 --- !u!1 &6228304221958958980
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using RunnerAirplane.Gameplay.Weapons;
 
 namespace RunnerAirplane.Gameplay.Bosses
 {
-    public class BossBattleship : MonoBehaviour
+    public class BossBattleship : Boss
     {
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
@@ -27,6 +27,17 @@ namespace RunnerAirplane.Gameplay.Bosses
         private void Awake()
         {
             _timeStartAttack1 = Time.time + _delayStartAttack;
+        }
+
+        public override void StartBattle() {}
+
+        public override void EndBattle()
+        {
+            foreach (Shotgun shotgun in _shotguns)
+            {
+                shotgun.IsActive = false;
+            }
+            _bombardment.IsActive = false;
         }
 
         private void Update()

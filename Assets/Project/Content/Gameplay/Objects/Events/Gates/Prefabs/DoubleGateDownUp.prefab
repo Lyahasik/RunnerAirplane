@@ -47,7 +47,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 20, y: 3, z: 0.5}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3851364785972723560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +128,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GateDown
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007509192893459171, guid: 3635d487929abdf4da06f78f2768ef6e,
+        type: 3}
+      propertyPath: _value
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1265686989156384041, guid: 3635d487929abdf4da06f78f2768ef6e, type: 3}

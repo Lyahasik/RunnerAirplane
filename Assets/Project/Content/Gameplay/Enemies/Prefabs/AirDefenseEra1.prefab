@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437211992271464593}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.38, z: 0}
+  m_LocalPosition: {x: 0, y: -4.38, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -141,10 +141,10 @@ MonoBehaviour:
   _textHealth: {fileID: 6772950088510802064}
   _poolBullets: {fileID: 0}
   _combatEndDistance: -1
-  _delayStartFire: 1
+  _delayStartFire: 0.5
   _fireDistance: 10
   _weapon: {fileID: 1277701560796124038}
-  _delayDamage: 0
+  _delayDamage: 0.5
 --- !u!1 &1277701560796124038
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277701560796124038}
   m_LocalRotation: {x: -0.268444, y: -0, z: -0, w: 0.96329534}
-  m_LocalPosition: {x: 0, y: 1.98, z: 2.34}
+  m_LocalPosition: {x: 0, y: -2.02, z: 2.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -431,7 +431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1.5}
   m_SizeDelta: {x: 1080, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8267908245784865863
@@ -531,7 +531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.08}
+  m_AnchoredPosition: {x: 0, y: -3.92}
   m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2377266685299614764

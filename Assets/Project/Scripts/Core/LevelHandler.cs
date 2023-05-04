@@ -2,14 +2,21 @@ using Cinemachine;
 using UnityEngine;
 
 using RunnerAirplane.Gameplay.Bosses;
+using RunnerAirplane.Gameplay.Objects.Events.Gates;
 using RunnerAirplane.Gameplay.Player;
+using RunnerAirplane.UI;
 
 namespace RunnerAirplane.Core
 {
     public class LevelHandler : MonoBehaviour
     {
+        [SerializeField] private LevelMenu _levelMenu;
+        
+        [Space]
         [SerializeField] private float _speedMove;
         [SerializeField] private GameObject _road;
+        [SerializeField] private bool _isMovingBattlefield;
+        [SerializeField] private float _speedMoveBattlefield;
         [SerializeField] private GameObject _battlefield;
         [SerializeField] private GameObject _movingObjects;
 
@@ -52,6 +59,16 @@ namespace RunnerAirplane.Core
             _playerAttack = _player.GetComponent<PlayerAttack>();
             
             InitMaterials();
+        }
+
+        private void OnEnable()
+        {
+            FinishGate.OnFinish += EndGame;
+        }
+
+        private void OnDisable()
+        {
+            FinishGate.OnFinish -= EndGame;
         }
 
         private void InitMaterials()
@@ -124,10 +141,11 @@ namespace RunnerAirplane.Core
 
         private void MovementBattle()
         {
-            if (!_isBattle)
+            if (!_isBattle
+                || !_isMovingBattlefield)
                 return;
                 
-            float step = _speedMove * Time.deltaTime;
+            float step = _speedMoveBattlefield * Time.deltaTime;
 
             _offsetBattle.y -= step / _materialBattlefield.mainTextureScale.y;
             _materialBattlefield.mainTextureOffset = _offsetBattle;
@@ -151,14 +169,14 @@ namespace RunnerAirplane.Core
             {
                 if (!_boss)
                 {
-                    _endGame = true;
+                    EndGame();
                 
                     _playerAttack.IsActive = false;
                 }
 
                 if (!_player)
                 {
-                    _endGame = true;
+                    EndGame();
                     
                     _boss.EndBattle();
                     _boss.enabled = false;
@@ -166,8 +184,14 @@ namespace RunnerAirplane.Core
             }
             else if (!_player)
             {
-                _endGame = true;
+                EndGame();
             }
+        }
+
+        private void EndGame()
+        {
+            _endGame = true;
+            _levelMenu.EndGame();
         }
     }
 }

@@ -36,7 +36,8 @@ namespace RunnerAirplane.Gameplay.Weapons
         protected virtual void Fire()
         {
             if (!_isActive
-                || _nextFireTime > Time.time)
+                || _nextFireTime > Time.time
+                || !_poolBullets)
                 return;
 
             Bullet bullet = _poolBullets.GetBullet(_bulletType);

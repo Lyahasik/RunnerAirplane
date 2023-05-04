@@ -14,25 +14,20 @@ namespace RunnerAirplane.Core
         {
             SceneManager.LoadScene("MainScene");
         }
-        
-        public void StartDemoObstaclesScene()
-        {
-            SceneManager.LoadScene("DemoObstaclesScene");
-        }
-        
-        public void StartDemoGatesScene()
-        {
-            SceneManager.LoadScene("DemoGatesScene");
-        }
-        
-        public void StartDemoCombatScene()
-        {
-            SceneManager.LoadScene("DemoCombatScene");
-        }
 
         public void StartIndexScene(int index)
         {
-            SceneManager.LoadScene(index);
+            SceneManager.LoadScene(index * 5 - 4);
+        }
+
+        public static void PreviousScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+
+        public static void NextScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

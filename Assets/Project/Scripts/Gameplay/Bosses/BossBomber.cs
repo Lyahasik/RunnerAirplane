@@ -33,16 +33,6 @@ namespace RunnerAirplane.Gameplay.Bosses
             _movementToPoint = GetComponent<MovementToPoint>();
         }
 
-        private void OnEnable()
-        {
-            StartBattle();
-        }
-
-        private void OnDisable()
-        {
-            EndBattle();
-        }
-
         private void Update()
         {
             StartFire1();

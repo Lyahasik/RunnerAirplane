@@ -31,21 +31,12 @@ namespace RunnerAirplane.Gameplay.Bosses
             _timeStartAttack1 = Time.time + _delayStartAttack;
         }
 
-        private void OnEnable()
-        {
-            StartBattle();
-        }
-
-        private void OnDisable()
-        {
-            EndBattle();
-        }
-
         public override void StartBattle() {}
 
         public override void EndBattle()
         {
             _machineGun.IsActive = false;
+            _turnRange.IsTurning = false;
             _homingRocketLauncher.IsActive = false;
         }
 

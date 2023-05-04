@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3093050260148100452
+--- !u!1 &8826143866497911773
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3093050260148100379}
-  - component: {fileID: 9139511828774752355}
+  - component: {fileID: 8826143866497911714}
+  - component: {fileID: 3334469475625780954}
   m_Layer: 0
-  m_Name: PoolBullets
+  m_Name: FullPoolBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3093050260148100379
+--- !u!4 &8826143866497911714
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3093050260148100452}
+  m_GameObject: {fileID: 8826143866497911773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9139511828774752355
+--- !u!114 &3334469475625780954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3093050260148100452}
+  m_GameObject: {fileID: 8826143866497911773}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c38d67981df117a488e86ab82ccf2ddf, type: 3}
@@ -52,4 +52,28 @@ MonoBehaviour:
       type: 3}
   - Type: 2
     Prefab: {fileID: -3282761725711007377, guid: 917770b92c09daa4389cafc31d0a37ff,
+      type: 3}
+  - Type: 3
+    Prefab: {fileID: 1380556032482583059, guid: db667c96743f77f49bce68161a48e269,
+      type: 3}
+  - Type: 4
+    Prefab: {fileID: 7200455524909597776, guid: d85eb8300ce12594ca34d1516e76cf89,
+      type: 3}
+  - Type: 5
+    Prefab: {fileID: -8878321614818441453, guid: 0b73937e9b70aa249adbc961697bf6f0,
+      type: 3}
+  - Type: 6
+    Prefab: {fileID: 5935523069926051057, guid: ee29011ab871dd444aa42af09b5b94b8,
+      type: 3}
+  - Type: 7
+    Prefab: {fileID: 5120154195260220183, guid: cbcc0367354712948bbe0fbc6e317009,
+      type: 3}
+  - Type: 8
+    Prefab: {fileID: 1838496952718369012, guid: d4f78eb9a20712845989c1fcab6146e1,
+      type: 3}
+  - Type: 9
+    Prefab: {fileID: -1266389258319611930, guid: c222de319a789a941a6c03005684f106,
+      type: 3}
+  - Type: 10
+    Prefab: {fileID: 6195530678986676283, guid: 37b911cc6df913a43957b62dd9279cc5,
       type: 3}
