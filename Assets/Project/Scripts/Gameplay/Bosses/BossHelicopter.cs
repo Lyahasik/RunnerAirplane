@@ -44,6 +44,7 @@ namespace RunnerAirplane.Gameplay.Bosses
                 machineGun.IsActive = false;
             }
             _laserGun.IsActive = false;
+            
             _movementToPoint.enabled = false;
         }
 
