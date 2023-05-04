@@ -44,7 +44,9 @@ namespace RunnerAirplane.Gameplay.Weapons
 
         private void OffLaser()
         {
-            _poolBullets.ReturnBullet(_laser, BulletType.Laser);
+            if (_laser)
+                _poolBullets.ReturnBullet(_laser, BulletType.Laser);
+            
             _laser = null;
         }
     }

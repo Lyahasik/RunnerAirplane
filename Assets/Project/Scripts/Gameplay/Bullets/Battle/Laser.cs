@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 using RunnerAirplane.Gameplay.Objects;
@@ -9,10 +10,12 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
     public class Laser : Bullet
     {
         private int _damage;
-        [SerializeField] private GameObject _warningEffect;
-        [SerializeField] private GameObject _damageEffect;
+        [SerializeField] private ParticleSystem _visualEffect;
         [SerializeField] private float _delayActivateDamage;
         [SerializeField] private float _delayMakeDamage;
+
+        private ParticleSystem.MainModule _mainVisualEffect;
+        private ParticleSystem.MinMaxGradient _baseColor;
         
         private float _nextMakeDamage;
 
@@ -25,20 +28,26 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             _collider = GetComponent<Collider>();
         }
 
+        private void Start()
+        {
+            _mainVisualEffect = _visualEffect.main;
+            _baseColor = _mainVisualEffect.startColor;
+        }
+
         public override void Init(Vector3 position, Vector3 direction, int damage = 0, bool isPlayerWeapon = false)
         {
             transform.position = position;
             transform.rotation = Quaternion.LookRotation(direction);
 
             _damage = damage;
+            _visualEffect.Play();
             Invoke(nameof(ActivateDamage), _delayActivateDamage);
         }
 
         private void ActivateDamage()
         {
             _collider.enabled = true;
-            _warningEffect.SetActive(false);
-            _damageEffect.SetActive(true);
+            _mainVisualEffect.startColor = Color.red;
         }
 
         private void Update()
@@ -59,11 +68,12 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         public override void Reset(Vector3 newPosition)
         {
             _collider.enabled = false;
-            _warningEffect.SetActive(true);
-            _damageEffect.SetActive(false);
+            _mainVisualEffect.startColor = _baseColor;
             
             transform.parent = _poolBullets.transform;
             transform.position = newPosition;
+            
+            _visualEffect.Stop();
 
             _playerData = null;
         }

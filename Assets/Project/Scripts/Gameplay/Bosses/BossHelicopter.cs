@@ -5,8 +5,10 @@ using RunnerAirplane.Gameplay.Weapons;
 
 namespace RunnerAirplane.Gameplay.Bosses
 {
-    public class BossHelicopter : MonoBehaviour
+    [RequireComponent(typeof(MovementToPoint))]
+    public class BossHelicopter : Boss
     {
+        private MovementToPoint _movementToPoint;
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
         
@@ -19,7 +21,6 @@ namespace RunnerAirplane.Gameplay.Bosses
         
         [Space]
         [SerializeField] private LaserGun _laserGun;
-        [SerializeField] private TurnRange _turnRangeGun;
         [SerializeField] private float _timeAttack2;
         private float _timeStartAttack2;
         private float _timeEndAttack2;
@@ -27,7 +28,23 @@ namespace RunnerAirplane.Gameplay.Bosses
 
         private void Awake()
         {
+            _movementToPoint = GetComponent<MovementToPoint>();
             _timeStartAttack1 = Time.time + _delayStartAttack;
+        }
+
+        public override void StartBattle()
+        {
+            _movementToPoint.enabled = true;
+        }
+
+        public override void EndBattle()
+        {
+            foreach (MachineGun machineGun in _machineGuns)
+            {
+                machineGun.IsActive = false;
+            }
+            _laserGun.IsActive = false;
+            _movementToPoint.enabled = false;
         }
 
         private void Update()
@@ -82,7 +99,6 @@ namespace RunnerAirplane.Gameplay.Bosses
             
             _laserGun.IsActive = true;
             _isActiveAttack2 = true;
-            _turnRangeGun.IsTurning = true;
             
             _timeEndAttack2 = Time.time + _timeAttack2;
         }
@@ -95,7 +111,6 @@ namespace RunnerAirplane.Gameplay.Bosses
             
             _laserGun.IsActive = false;
             _isActiveAttack2 = false;
-            _turnRangeGun.IsTurning = false;
             
             _timeStartAttack1 = Time.time + _rechargeAttack;
             _timeStartAttack2 = 0f;
