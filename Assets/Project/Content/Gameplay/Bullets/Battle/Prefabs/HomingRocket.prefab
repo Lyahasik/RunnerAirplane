@@ -479,6 +479,7 @@ MonoBehaviour:
   _speedMove: 5
   _delayStartHoming: 3
   _timeHoming: 5
+  _explosionScale: 5
 --- !u!1 &3177733181860363202
 GameObject:
   m_ObjectHideFlags: 0

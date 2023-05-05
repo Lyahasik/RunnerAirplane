@@ -8,6 +8,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
 {
     public class HomingRocket : Bullet
     {
+        
         private int _damage;
         [SerializeField] private float _speedTurn;
         [SerializeField] private float _speedMove;
@@ -15,6 +16,8 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         [SerializeField] private float _timeHoming;
         private float _startTimeHoming;
         private float _endTimeHoming;
+        
+        [SerializeField] private float _explosionScale;
 
         private Transform _targetTransform;
 
@@ -96,6 +99,15 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             
             transform.position = newPosition;
         }
+        
+        private void Explosion()
+        {
+            Bullet bullet = _poolBullets.GetBullet(BulletType.Explosion);
+            bullet.Init(transform.position);
+            bullet.transform.localScale = new Vector3(_explosionScale, _explosionScale, _explosionScale);
+                
+            _poolBullets.ReturnBullet(this, BulletType.HomingRocket);
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -104,7 +116,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             if (playerData)
             {
                 playerData.CalculateNewHealth(MathOperationType.Subtraction, _damage);
-                _poolBullets.ReturnBullet(this, BulletType.HomingRocket);
+                Explosion();
             }
             else if (other.GetComponent<BattleBorders>())
             {

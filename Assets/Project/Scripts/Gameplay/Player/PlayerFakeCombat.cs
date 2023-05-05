@@ -41,6 +41,8 @@ namespace RunnerAirplane.Gameplay.Player
         
         private bool _isEmpty;
 
+        public PoolBullets PoolBullets => _poolBullets;
+
         public bool IsActiveCombat => _isActiveCombat;
         
         public int TemporaryHealth

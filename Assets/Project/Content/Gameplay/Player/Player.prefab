@@ -440,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startHealth: 20
   _textHealth: {fileID: 4653451137710438894}
+  _explosionScale: 5
   _listSelectedEra: {fileID: 11400000, guid: d7b6e45c2b826044f9e6bbaf3f7e50c6, type: 2}
 --- !u!114 &8339945348571600856
 MonoBehaviour:

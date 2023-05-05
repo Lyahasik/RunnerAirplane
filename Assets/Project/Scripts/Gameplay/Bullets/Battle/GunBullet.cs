@@ -11,6 +11,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
     {
         private int _damage;
         [SerializeField] private float _speedMove;
+        [SerializeField] private float _explosionScale;
 
         private Vector3 _direction;
 
@@ -56,7 +57,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
                 if (bossData)
                 {
                     bossData.CalculateNewHealth(_damage);
-                    _poolBullets.ReturnBullet(this, BulletType.GunBullet);
+                    Explosion();
                 }
             }
             else
@@ -66,9 +67,18 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
                 if (playerData)
                 {
                     playerData.CalculateNewHealth(MathOperationType.Subtraction, _damage);
-                    _poolBullets.ReturnBullet(this, BulletType.GunBullet);
+                    Explosion();
                 }
             }
+        }
+
+        private void Explosion()
+        {
+            Bullet bullet = _poolBullets.GetBullet(BulletType.Explosion);
+            bullet.Init(transform.position);
+            bullet.transform.localScale = new Vector3(_explosionScale, _explosionScale, _explosionScale);
+                
+            _poolBullets.ReturnBullet(this, BulletType.GunBullet);
         }
 
         private void OnTriggerEnter(Collider other)

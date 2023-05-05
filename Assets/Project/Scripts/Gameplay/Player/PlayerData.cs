@@ -2,6 +2,8 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 
+using RunnerAirplane.Core.Pool;
+using RunnerAirplane.Gameplay.Bullets;
 using RunnerAirplane.Gameplay.Objects;
 using RunnerAirplane.ScriptableObjects;
 
@@ -9,8 +11,11 @@ namespace RunnerAirplane.Gameplay.Player
 {
     public class PlayerData : MonoBehaviour
     {
+        private PoolBullets _poolBullets;
+        
         [SerializeField] private int _startHealth;
         [SerializeField] private TMP_Text _textHealth;
+        [SerializeField] private float _explosionScale;
 
         [SerializeField] private ListSelectedEraData _listSelectedEra;
         private GameObject _currentPrefabEra;
@@ -45,6 +50,7 @@ namespace RunnerAirplane.Gameplay.Player
 
         private void Start()
         {
+            _poolBullets = GetComponent<PlayerFakeCombat>().PoolBullets;
             UpdateHealth(_startHealth);
         }
 
@@ -98,9 +104,17 @@ namespace RunnerAirplane.Gameplay.Player
             _currentPrefabEra = Instantiate(prefabEra, transform);
             _currentPrefabEra.transform.parent = transform;
         }
+        
+        private void Explosion()
+        {
+            Bullet bullet = _poolBullets.GetBullet(BulletType.Explosion);
+            bullet.Init(transform.position);
+            bullet.transform.localScale = new Vector3(_explosionScale, _explosionScale, _explosionScale);
+        }
 
         private void Die()
         {
+            Explosion();
             Destroy(gameObject);
         }
     }
