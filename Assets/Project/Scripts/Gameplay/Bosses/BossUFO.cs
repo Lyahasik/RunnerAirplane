@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,8 +6,12 @@ using RunnerAirplane.Gameplay.Weapons;
 
 namespace RunnerAirplane.Gameplay.Bosses
 {
-    public class BossUFO : MonoBehaviour
+    [RequireComponent(typeof(MovementToPoint))]
+    [RequireComponent(typeof(Teleport))]
+    public class BossUFO : Boss
     {
+        private MovementToPoint _movementToPoint;
+        private Teleport _teleport;
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
         
@@ -19,7 +24,26 @@ namespace RunnerAirplane.Gameplay.Bosses
 
         private void Awake()
         {
+            _movementToPoint = GetComponent<MovementToPoint>();
+            _teleport = GetComponent<Teleport>();
             _timeStartAttack = Time.time + _delayStartAttack;
+        }
+
+        public override void StartBattle()
+        {
+            _movementToPoint.enabled = true;
+            _teleport.enabled = true;
+        }
+
+        public override void EndBattle()
+        {
+            foreach (LaserGun laserGun in _laserGuns)
+            {
+                laserGun.IsActive = false;
+            }
+            
+            _movementToPoint.enabled = false;
+            _teleport.enabled = false;
         }
 
         private void Update()

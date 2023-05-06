@@ -13,9 +13,6 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         [SerializeField] private ParticleSystem _visualEffect;
         [SerializeField] private float _delayActivateDamage;
         [SerializeField] private float _delayMakeDamage;
-
-        private ParticleSystem.MainModule _mainVisualEffect;
-        private ParticleSystem.MinMaxGradient _baseColor;
         
         private float _nextMakeDamage;
 
@@ -26,12 +23,6 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         private void Awake()
         {
             _collider = GetComponent<Collider>();
-        }
-
-        private void Start()
-        {
-            _mainVisualEffect = _visualEffect.main;
-            _baseColor = _mainVisualEffect.startColor;
         }
 
         public override void Init(Vector3 position, Vector3 direction, int damage = 0, bool isPlayerWeapon = false)
@@ -47,7 +38,6 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         private void ActivateDamage()
         {
             _collider.enabled = true;
-            _mainVisualEffect.startColor = Color.red;
         }
 
         private void Update()
@@ -68,12 +58,12 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         public override void Reset(Vector3 newPosition)
         {
             _collider.enabled = false;
-            _mainVisualEffect.startColor = _baseColor;
             
             transform.parent = _poolBullets.transform;
             transform.position = newPosition;
             
             _visualEffect.Stop();
+            _visualEffect.Clear();
 
             _playerData = null;
         }

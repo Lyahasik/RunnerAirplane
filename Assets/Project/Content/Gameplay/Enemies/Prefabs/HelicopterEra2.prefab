@@ -363,8 +363,8 @@ MonoBehaviour:
   _currentHealth: 0
   _textHealth: {fileID: 1373965104603772270}
   _poolBullets: {fileID: 0}
-  _combatEndDistance: 0
-  _delayStartFire: 0
+  _combatEndDistance: 3
+  _delayStartFire: 1
   _weapon: {fileID: 6228304222471560714}
   _shotDelay: 0.3
   _delayDamage: 0

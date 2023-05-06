@@ -4,8 +4,9 @@ using RunnerAirplane.Gameplay.Weapons;
 
 namespace RunnerAirplane.Gameplay.Bosses
 {
-    public class BossBoat : MonoBehaviour
+    public class BossBoat : Boss
     {
+        private MovementToPoint _movementToPoint;
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private Transform _targetMovementTransform;
         [SerializeField] private float _speedMovement;
@@ -29,13 +30,35 @@ namespace RunnerAirplane.Gameplay.Bosses
         private float _timeEndAttack2;
         private bool _isActiveAttack2;
 
+        private bool _isFreeze;
+
         private void Awake()
         {
             _timeStartAttack1 = Time.time + _delayStartAttack;
         }
 
+        private void Start()
+        {
+            _movementToPoint = _targetMovementTransform.GetComponent<MovementToPoint>();
+            _movementToPoint.enabled = true;
+        }
+
+        public override void StartBattle() {}
+
+        public override void EndBattle()
+        {
+            _machineGun.IsActive = false;
+            _homingRocketLauncher.IsActive = false;
+            
+            _isFreeze = true;
+            _movementToPoint.enabled = false;
+        }
+
         private void Update()
         {
+            if (_isFreeze)
+                return;
+            
             Movement();
             
             StartFire1();
@@ -56,8 +79,6 @@ namespace RunnerAirplane.Gameplay.Bosses
 
         private void Turn()
         {
-            
-            
             Vector3 direction = _targetMovementTransform.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, _speedTurn * Time.deltaTime);
