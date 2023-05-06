@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using UnityEngine;
 
@@ -29,7 +31,7 @@ namespace RunnerAirplane.Core
         [Space] [SerializeField] private GameObject _player;
         [SerializeField] private float _battleRangeHorizontalMovement;
         [SerializeField] private float _battleRangeVerticalMovement;
-        [SerializeField] private Boss _boss;
+        [SerializeField] private List<Boss> _bosses;
         private PlayerMovement _playerMovement;
         private PlayerAttack _playerAttack;
 
@@ -157,8 +159,11 @@ namespace RunnerAirplane.Core
             _playerMovement.RangeVerticalMovement = _battleRangeVerticalMovement;
             
             _isActiveBattle = true;
-            
-            _boss.enabled = true;
+
+            foreach (Boss boss in _bosses)
+            {
+                boss.enabled = true;
+            }
             
             _playerAttack.IsActive = true;
         }
@@ -167,7 +172,9 @@ namespace RunnerAirplane.Core
         {
             if (_isActiveBattle)
             {
-                if (!_boss)
+                bool bossAlive = _bosses.Any(boss => boss);
+
+                if (!bossAlive)
                 {
                     EndGame();
                 
@@ -177,9 +184,15 @@ namespace RunnerAirplane.Core
                 if (!_player)
                 {
                     EndGame();
-                    
-                    _boss.EndBattle();
-                    _boss.enabled = false;
+
+                    foreach (Boss boss in _bosses)
+                    {
+                        if (boss)
+                        {
+                            boss.EndBattle();
+                            boss.enabled = false;
+                        }
+                    }
                 }
             }
             else if (!_player)

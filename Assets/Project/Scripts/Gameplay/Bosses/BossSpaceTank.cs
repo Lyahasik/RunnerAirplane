@@ -5,8 +5,9 @@ using RunnerAirplane.Gameplay.Weapons;
 
 namespace RunnerAirplane.Gameplay.Bosses
 {
-    public class BossSpaceTank : MonoBehaviour
+    public class BossSpaceTank : Boss
     {
+        private MovementToPoint _movementToPoint;
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
         
@@ -26,7 +27,28 @@ namespace RunnerAirplane.Gameplay.Bosses
 
         private void Awake()
         {
+            _movementToPoint = GetComponent<MovementToPoint>();
             _timeStartAttack1 = Time.time + _delayStartAttack;
+        }
+
+        public override void StartBattle()
+        {
+            _movementToPoint.enabled = true;
+        }
+
+        public override void EndBattle()
+        {
+            
+            foreach (MachineGun machineGun in _machineGuns)
+            {
+                machineGun.IsActive = false;
+            }
+            foreach (LaserGun laserGun in _laserGuns)
+            {
+                laserGun.IsActive = false;
+            }
+            
+            _movementToPoint.enabled = false;
         }
 
         private void Update()

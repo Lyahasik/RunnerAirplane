@@ -15,9 +15,14 @@ namespace RunnerAirplane.Core
             SceneManager.LoadScene("MainScene");
         }
 
-        public void StartIndexScene(int index)
+        public void StartLevel(int index)
         {
             SceneManager.LoadScene(index * 5 - 4);
+        }
+
+        public void StartIndexScene(int index)
+        {
+            SceneManager.LoadScene(index);
         }
 
         public static void PreviousScene()
