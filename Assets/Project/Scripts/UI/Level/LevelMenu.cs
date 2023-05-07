@@ -1,11 +1,10 @@
-using System;
-using UnityEngine;
 using TMPro;
-
-using RunnerAirplane.Core;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RunnerAirplane.UI
+using RunnerAirplane.Core;
+
+namespace RunnerAirplane.UI.Level
 {
     public class LevelMenu : MonoBehaviour
     {

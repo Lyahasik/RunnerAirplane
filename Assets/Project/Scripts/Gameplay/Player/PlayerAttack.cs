@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using RunnerAirplane.Gameplay.Weapons;
-using RunnerAirplane.UI;
+using RunnerAirplane.UI.Level;
 
 namespace RunnerAirplane.Gameplay.Player
 {

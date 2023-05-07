@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RunnerAirplane.UI
+namespace RunnerAirplane.UI.Level
 {
     public class WorldLookAt : MonoBehaviour
     {

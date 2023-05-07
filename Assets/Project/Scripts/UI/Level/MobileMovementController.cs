@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 using RunnerAirplane.Gameplay.Player;
 
-namespace RunnerAirplane.UI
+namespace RunnerAirplane.UI.Level
 {
     public class MobileMovementController : MonoBehaviour, IDragHandler
     {

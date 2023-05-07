@@ -26,6 +26,7 @@ namespace RunnerAirplane.Gameplay.Player
 
         private bool _isPresenceDisposableRocket;
 
+        public int StartHealth => _startHealth;
         public int CurrentHealth => _currentHealth;
 
         public bool IsPresenceDisposableRocket

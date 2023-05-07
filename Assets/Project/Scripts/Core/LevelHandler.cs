@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 using RunnerAirplane.Gameplay.Bosses;
 using RunnerAirplane.Gameplay.Objects.Events.Gates;
 using RunnerAirplane.Gameplay.Player;
-using RunnerAirplane.UI;
+using RunnerAirplane.Gameplay.Progress;
+using RunnerAirplane.UI.Level;
 
 namespace RunnerAirplane.Core
 {
@@ -32,6 +34,7 @@ namespace RunnerAirplane.Core
         [SerializeField] private float _battleRangeHorizontalMovement;
         [SerializeField] private float _battleRangeVerticalMovement;
         [SerializeField] private List<Boss> _bosses;
+        private PlayerData _playerData;
         private PlayerMovement _playerMovement;
         private PlayerAttack _playerAttack;
 
@@ -57,6 +60,7 @@ namespace RunnerAirplane.Core
             _startCameraPosition = _camera.transform.position;
             _startCameraRotation = _camera.transform.rotation;
             
+            _playerData = _player.GetComponent<PlayerData>();
             _playerMovement = _player.GetComponent<PlayerMovement>();
             _playerAttack = _player.GetComponent<PlayerAttack>();
             
@@ -65,12 +69,12 @@ namespace RunnerAirplane.Core
 
         private void OnEnable()
         {
-            FinishGate.OnFinish += EndGame;
+            FinishGate.OnFinish += SuccessLevel;
         }
 
         private void OnDisable()
         {
-            FinishGate.OnFinish -= EndGame;
+            FinishGate.OnFinish -= SuccessLevel;
         }
 
         private void InitMaterials()
@@ -176,14 +180,14 @@ namespace RunnerAirplane.Core
 
                 if (!bossAlive)
                 {
-                    EndGame();
+                    SuccessLevel();
                 
                     _playerAttack.IsActive = false;
                 }
 
                 if (!_player)
                 {
-                    EndGame();
+                    GameOver();
 
                     foreach (Boss boss in _bosses)
                     {
@@ -197,11 +201,20 @@ namespace RunnerAirplane.Core
             }
             else if (!_player)
             {
-                EndGame();
+                GameOver();
             }
         }
 
-        private void EndGame()
+        private void SuccessLevel()
+        {
+            _endGame = true;
+            _levelMenu.EndGame();
+            
+            ProcessingProgress.RememberLastStartHealth(_playerData.StartHealth);
+            ProcessingProgress.RememberLastLevel(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        private void GameOver()
         {
             _endGame = true;
             _levelMenu.EndGame();
