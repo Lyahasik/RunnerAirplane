@@ -10,7 +10,10 @@ namespace RunnerAirplane.Gameplay.Progress
         private const string _stringKeySkin = "Skin";
         private const string _stringKeyActiveSkin = "ActiveSkin";
 
+        private const string _stringKeyNumberMoney = "NumberMoney";
+
         public static event Action<int, int> OnActiveSkin;
+        public static event Action OnUpdateMoney;
 
         public static void RememberLastLevel(int number)
         {
@@ -63,6 +66,21 @@ namespace RunnerAirplane.Gameplay.Progress
             bool isActive = PlayerPrefs.GetInt(key) == skinNumber;
         
             return isActive;
+        }
+
+        public static void UpdateNumberMoney(int value)
+        {
+            int currentNumberMoney = PlayerPrefs.GetInt(_stringKeyNumberMoney);
+
+            currentNumberMoney += value;
+            
+            PlayerPrefs.SetInt(_stringKeyNumberMoney, currentNumberMoney);
+            OnUpdateMoney?.Invoke();
+        }
+
+        public static int GetNumberMoney()
+        {
+            return PlayerPrefs.GetInt(_stringKeyNumberMoney);
         }
 
         public static void ResetAll()

@@ -89,6 +89,12 @@ namespace RunnerAirplane.UI.Main.Angar
 
         public void UnlockSkin()
         {
+            int numberMoney = ProcessingProgress.GetNumberMoney();
+            
+            if (numberMoney < _currentSkin.Price)
+                return;
+
+            ProcessingProgress.UpdateNumberMoney(-_currentSkin.Price);
             ProcessingProgress.UnlockSkin(_currentSkin.EraNumber, _currentSkin.SkinNumber);
             _currentSkin.Unlock();
             SetSkinImage(_currentSkin.SpriteIcon, _currentSkin.Color);

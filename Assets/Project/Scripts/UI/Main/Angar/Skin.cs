@@ -9,15 +9,20 @@ namespace RunnerAirplane.UI.Main.Angar
     public class Skin : MonoBehaviour, IPointerDownHandler, ISelectHandler
     {
         [SerializeField] private AngarWindow _angarWindow;
-        
+
         [Space]
+        [SerializeField] private int _price;
         [SerializeField] private int _eraNumber;
         [SerializeField] private int _skinNumber;
+        
+        [Space]
         [SerializeField] private Image _icon;
         [SerializeField] private Image _frameImage;
 
         private bool _isUnlock;
         private bool _isActive;
+
+        public int Price => _price;
 
         public int EraNumber => _eraNumber;
         public int SkinNumber => _skinNumber;
