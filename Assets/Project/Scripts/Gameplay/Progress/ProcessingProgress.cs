@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace RunnerAirplane.Gameplay.Progress
@@ -7,6 +8,9 @@ namespace RunnerAirplane.Gameplay.Progress
         private const string _stringKeyLastLevel = "LastLevel";
         private const string _stringKeyLastStartHealth = "LastStartHealth";
         private const string _stringKeySkin = "Skin";
+        private const string _stringKeyActiveSkin = "ActiveSkin";
+
+        public static event Action<int, int> OnActiveSkin;
 
         public static void RememberLastLevel(int number)
         {
@@ -28,21 +32,36 @@ namespace RunnerAirplane.Gameplay.Progress
             return PlayerPrefs.GetInt(_stringKeyLastStartHealth);
         }
 
-        public static void ActivateSkin(int eraNumber, int skinNumber)
+        public static void UnlockSkin(int eraNumber, int skinNumber)
         {
             string key = _stringKeySkin + eraNumber + skinNumber;
             
-            Debug.Log($"Save {key}");
             PlayerPrefs.SetInt(key, 1);
         }
 
-        public static bool CheckSkin(int eraNumber, int skinNumber)
+        public static bool CheckUnlockSkin(int eraNumber, int skinNumber)
         {
             string key = _stringKeySkin + eraNumber + skinNumber;
 
-            Debug.Log($"Check {key}");
-            bool isActive = PlayerPrefs.GetInt(key) == 1;
+            bool isUnlock = PlayerPrefs.GetInt(key) == 1;
 
+            return isUnlock;
+        }
+
+        public static void ActivateSkin(int eraNumber, int skinNumber)
+        {
+            string key = _stringKeyActiveSkin + eraNumber;
+            
+            PlayerPrefs.SetInt(key, skinNumber);
+            OnActiveSkin?.Invoke(eraNumber, skinNumber);
+        }
+
+        public static bool CheckActivateSkin(int eraNumber, int skinNumber)
+        {
+            string key = _stringKeyActiveSkin + eraNumber;
+        
+            bool isActive = PlayerPrefs.GetInt(key) == skinNumber;
+        
             return isActive;
         }
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,8 @@ namespace RunnerAirplane.UI.Main.Angar
         [SerializeField] private GameObject _buttonActive;
 
         private Skin _currentSkin;
+        
+        public static event Action<int, int> OnSelectSkin;
 
         private void OnDisable()
         {
@@ -29,6 +32,8 @@ namespace RunnerAirplane.UI.Main.Angar
             {
                 SetSkinImage(_currentSkin.SpriteIcon, _currentSkin.Color);
             }
+            
+            OnSelectSkin?.Invoke(_currentSkin.EraNumber, _currentSkin.SkinNumber);
         }
 
         private void SetSkinImage(Sprite sprite, Color color)
@@ -49,6 +54,11 @@ namespace RunnerAirplane.UI.Main.Angar
             if (_currentSkin.IsActive)
             {
                 _buttonBuy.SetActive(false);
+                _buttonActive.SetActive(false);
+            }
+            else if (_currentSkin.IsUnlock)
+            {
+                _buttonBuy.SetActive(false);
                 _buttonActive.SetActive(true);
             }
             else
@@ -58,14 +68,23 @@ namespace RunnerAirplane.UI.Main.Angar
             }
         }
 
-        public void ActivateSkin()
+        public void UnlockSkin()
         {
-            ProcessingProgress.ActivateSkin(_currentSkin.EraNumber, _currentSkin.SkinNumber);
-            _currentSkin.TryActive();
+            ProcessingProgress.UnlockSkin(_currentSkin.EraNumber, _currentSkin.SkinNumber);
+            _currentSkin.Unlock();
             SetSkinImage(_currentSkin.SpriteIcon, _currentSkin.Color);
             
             _buttonBuy.SetActive(false);
             _buttonActive.SetActive(true);
+            
+            OnSelectSkin?.Invoke(_currentSkin.EraNumber, _currentSkin.SkinNumber);
+        }
+
+        public void ActivateSkin()
+        {
+            ProcessingProgress.ActivateSkin(_currentSkin.EraNumber, _currentSkin.SkinNumber);
+            
+            _buttonActive.SetActive(false);
         }
     }
 }
