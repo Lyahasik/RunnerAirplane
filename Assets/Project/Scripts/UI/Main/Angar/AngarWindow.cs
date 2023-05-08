@@ -3,12 +3,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using RunnerAirplane.Gameplay.Progress;
+using RunnerAirplane.ScriptableObjects;
 
 namespace RunnerAirplane.UI.Main.Angar
 {
     public class AngarWindow : MonoBehaviour
     {
         [SerializeField] private Image _selectedSkinImage;
+        [SerializeField] private FullListEraData _fullListEraData;
+        [SerializeField] private ListSelectedEraData _listSelectedEraData;
 
         [Space]
         [SerializeField] private GameObject _buttonBuy;
@@ -34,6 +37,22 @@ namespace RunnerAirplane.UI.Main.Angar
             }
             
             OnSelectSkin?.Invoke(_currentSkin.EraNumber, _currentSkin.SkinNumber);
+        }
+
+        private void UpdateSkinPrefab(int eraNumber, int skinNumber)
+        {
+            int eraIndex = eraNumber - 1;
+            int skinIndex = skinNumber - 1;
+            
+            foreach (ListEraData listEraData in _fullListEraData.ListsEra)
+            {
+                if (listEraData.Number == eraNumber)
+                {
+                    _listSelectedEraData.ListEra[eraIndex].Prefab = listEraData.ListPrefabs[skinIndex];
+                        
+                    break;
+                }
+            }
         }
 
         private void SetSkinImage(Sprite sprite, Color color)
@@ -83,6 +102,7 @@ namespace RunnerAirplane.UI.Main.Angar
         public void ActivateSkin()
         {
             ProcessingProgress.ActivateSkin(_currentSkin.EraNumber, _currentSkin.SkinNumber);
+            UpdateSkinPrefab(_currentSkin.EraNumber, _currentSkin.SkinNumber);
             
             _buttonActive.SetActive(false);
         }
