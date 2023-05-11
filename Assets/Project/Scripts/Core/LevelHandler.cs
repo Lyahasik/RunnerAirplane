@@ -54,7 +54,7 @@ namespace RunnerAirplane.Core
         private bool _isBattle;
         private bool _isActiveBattle;
 
-        private bool _endGame;
+        public static bool PauseGame = true;
 
         private void Start()
         {
@@ -77,6 +77,7 @@ namespace RunnerAirplane.Core
         private void OnDisable()
         {
             FinishGate.OnFinish -= SuccessLevel;
+            PauseGame = true;
         }
 
         private void InitMaterials()
@@ -93,9 +94,9 @@ namespace RunnerAirplane.Core
 
         private void Update()
         {
-            if (_endGame)
+            if (PauseGame)
                 return;
-            
+
             Movement();
             MovementBattle();
             PrepareBattle();
@@ -209,7 +210,7 @@ namespace RunnerAirplane.Core
 
         private void SuccessLevel()
         {
-            _endGame = true;
+            PauseGame = true;
 
             int money = _playerData.CurrentHealth +
                         _playerData.CurrentHealth * (SceneManager.GetActiveScene().buildIndex / _levelMultiplier);
@@ -222,7 +223,7 @@ namespace RunnerAirplane.Core
 
         private void GameOver()
         {
-            _endGame = true;
+            PauseGame = true;
             _levelMenu.GameOver();
         }
     }

@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMovement: {fileID: 0}
   _touchSensitivity: 2
+  _promptMove: {fileID: 6962661745935688894}
 --- !u!1001 &7171213100783410658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 226608959155353948, guid: db46e0eabff24a94eb8ee8a2903692f6,
         type: 3}
       propertyPath: m_Name
-      value: HoldDrag
+      value: PromptMove
       objectReference: {fileID: 0}
     - target: {fileID: 226608959155353949, guid: db46e0eabff24a94eb8ee8a2903692f6,
         type: 3}
@@ -226,6 +227,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db46e0eabff24a94eb8ee8a2903692f6, type: 3}
+--- !u!1 &6962661745935688894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 226608959155353948, guid: db46e0eabff24a94eb8ee8a2903692f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7171213100783410658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6962661745935688895 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 226608959155353949, guid: db46e0eabff24a94eb8ee8a2903692f6,
