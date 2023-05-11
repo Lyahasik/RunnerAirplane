@@ -83,9 +83,27 @@ namespace RunnerAirplane.Gameplay.Progress
             return PlayerPrefs.GetInt(_stringKeyNumberMoney);
         }
 
+        public static void PrepareSkins()
+        {
+            for (int i = 1; i <= 7; i++)
+            {
+                if (CheckActivateSkin(i, 0))
+                {
+                    UnlockSkin(i, 1);
+                    ActivateSkin(i, 1);
+                }
+            }
+        }
+
         public static void ResetAll()
         {
             PlayerPrefs.DeleteAll();
+
+            for (int i = 1; i <= 7; i++)
+            {
+                UnlockSkin(i, 0);
+                ActivateSkin(i, 0);
+            }
         }
     }
 }

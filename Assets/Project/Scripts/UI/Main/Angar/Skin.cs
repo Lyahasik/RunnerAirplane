@@ -75,7 +75,7 @@ namespace RunnerAirplane.UI.Main.Angar
             if (_eraNumber == eraNumber
                 && _skinNumber == skinNumber)
             {
-                _frameImage.color = Color.green;
+                _frameImage.color = Color.yellow;
                 _frameImage.enabled = true;
             }
             else

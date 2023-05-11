@@ -13,7 +13,8 @@ namespace RunnerAirplane.UI.Level
 
         [Space]
         [SerializeField] private TMP_Text _textLevel;
-        [SerializeField] private GameObject _endGameWindow;
+        [SerializeField] private GameObject _successGameWindow;
+        [SerializeField] private GameObject _gameOverWindow;
         [SerializeField] private Wallet _wallet;
 
         private void Start()
@@ -21,10 +22,15 @@ namespace RunnerAirplane.UI.Level
             _textLevel.text = $"Level {SceneManager.GetActiveScene().buildIndex}";
         }
 
-        public void EndGame(int money)
+        public void SuccessGame(int money)
         {
-            _endGameWindow.SetActive(true);
+            _successGameWindow.SetActive(true);
             _wallet.SetMoney(money);
+        }
+
+        public void GameOver()
+        {
+            _gameOverWindow.SetActive(true);
         }
         
         public void Restart()

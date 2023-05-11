@@ -214,7 +214,7 @@ namespace RunnerAirplane.Core
             int money = _playerData.CurrentHealth +
                         _playerData.CurrentHealth * (SceneManager.GetActiveScene().buildIndex / _levelMultiplier);
             ProcessingProgress.UpdateNumberMoney(money);
-            _levelMenu.EndGame(money);
+            _levelMenu.SuccessGame(money);
 
             ProcessingProgress.RememberLastStartHealth(_playerData.StartHealth);
             ProcessingProgress.RememberLastLevel(SceneManager.GetActiveScene().buildIndex);
@@ -223,7 +223,7 @@ namespace RunnerAirplane.Core
         private void GameOver()
         {
             _endGame = true;
-            _levelMenu.EndGame(0);
+            _levelMenu.GameOver();
         }
     }
 }

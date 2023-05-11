@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,11 +16,17 @@ namespace RunnerAirplane.UI.Main.Angar
 
         [Space]
         [SerializeField] private GameObject _buttonBuy;
+        [SerializeField] private TMP_Text _buttonBuyText;
         [SerializeField] private GameObject _buttonActive;
 
         private Skin _currentSkin;
         
         public static event Action<int, int> OnSelectSkin;
+
+        private void Awake()
+        {
+            ProcessingProgress.PrepareSkins();
+        }
 
         private void OnDisable()
         {
@@ -83,6 +90,7 @@ namespace RunnerAirplane.UI.Main.Angar
             else
             {
                 _buttonBuy.SetActive(true);
+                _buttonBuyText.text = _currentSkin.Price.ToString();
                 _buttonActive.SetActive(false);
             }
         }

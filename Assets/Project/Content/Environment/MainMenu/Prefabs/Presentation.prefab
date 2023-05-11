@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 662690587595153110}
   - component: {fileID: 6816644918135018087}
+  - component: {fileID: 5613318579856947854}
   m_Layer: 0
   m_Name: Presentation
   m_TagString: Untagged
@@ -47,6 +48,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _listSelectedEra: {fileID: 11400000, guid: d7b6e45c2b826044f9e6bbaf3f7e50c6, type: 2}
   _angleRotationX: -160
+  _podium: {fileID: 3541117203038271047}
+  _speedRotation: 0.5
+--- !u!136 &5613318579856947854
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538038035736372221}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.5
+  m_Height: 3.6990027
+  m_Direction: 1
+  m_Center: {x: -0.33, y: 0, z: -0.9}
 --- !u!1 &3541117203038271047
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3541117203038271047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.26, y: -0.88, z: -0.27}
+  m_LocalPosition: {x: -0.34, y: -0.88, z: -0.9}
   m_LocalScale: {x: 3, y: 0.3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
