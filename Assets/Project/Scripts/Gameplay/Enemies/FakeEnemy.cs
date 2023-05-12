@@ -21,6 +21,7 @@ namespace RunnerAirplane.Gameplay.Enemies
 
         [SerializeField] private float _combatEndDistance;
         [SerializeField] private float _delayStartFire;
+        [SerializeField] private Vector3 _explosionShiftPosition;
         
         protected bool _isActiveCombat;
         protected float _startFireTime;
@@ -73,13 +74,28 @@ namespace RunnerAirplane.Gameplay.Enemies
             if (_isActiveCombat)
             {
                 _playerFakeCombat.EndCombat(_health);
-                Destroy(gameObject);
+                
+                Die(0f);
+                
+                // Bullet bullet = _poolBullets.GetBullet(BulletType.ExplosionEffect);
+                // bullet.Init(transform.position + _explosionShiftPosition);
+                // bullet.transform.parent = transform.parent;
+                //
+                // Destroy(gameObject);
             }
         }
 
         public void Die(float delayDie)
         {
+            Invoke(nameof(Explosion), delayDie);
             Destroy(gameObject, delayDie);
+        }
+
+        private void Explosion()
+        {
+            Bullet bullet = _poolBullets.GetBullet(BulletType.ExplosionEffect);
+            bullet.Init(transform.position + _explosionShiftPosition);
+            bullet.transform.parent = transform.parent;
         }
     }
 }

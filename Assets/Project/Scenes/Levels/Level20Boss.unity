@@ -647,12 +647,12 @@ PrefabInstance:
     - target: {fileID: 2429914592424751515, guid: 53a7bd010062100499df75013ad5a9b4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008420932
+      value: 0.0000000084209315
       objectReference: {fileID: 0}
     - target: {fileID: 2429914592424751515, guid: 53a7bd010062100499df75013ad5a9b4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000017614772
+      value: -0.000000001761477
       objectReference: {fileID: 0}
     - target: {fileID: 2429914592424751515, guid: 53a7bd010062100499df75013ad5a9b4,
         type: 3}
@@ -1104,11 +1104,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 730635532347753195, guid: df9fdc6cbb3bd5f4d889934819ec853d,
         type: 3}
-      propertyPath: _combatDistance
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 730635532347753195, guid: df9fdc6cbb3bd5f4d889934819ec853d,
-        type: 3}
       propertyPath: _playerFakeCombat
       value: 
       objectReference: {fileID: 7949898775493156939}
@@ -1224,7 +1219,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735329017}
-  m_LocalRotation: {x: 0.20474696, y: 0.000000008420932, z: -0.0000000017614772, w: 0.97881496}
+  m_LocalRotation: {x: 0.20474696, y: 0.0000000084209315, z: -0.000000001761477, w: 0.97881496}
   m_LocalPosition: {x: 0, y: 6, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1926,6 +1921,11 @@ PrefabInstance:
       propertyPath: _startHealth
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 2121899794600917285, guid: 50f3b1c3589cb674b904924d6beeb103,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 152089816}
     - target: {fileID: 4026654570692628035, guid: 50f3b1c3589cb674b904924d6beeb103,
         type: 3}
       propertyPath: _damage

@@ -2,6 +2,7 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 
+using RunnerAirplane.Core;
 using RunnerAirplane.Core.Pool;
 using RunnerAirplane.Gameplay.Bullets;
 using RunnerAirplane.Gameplay.Objects;
@@ -25,6 +26,8 @@ namespace RunnerAirplane.Gameplay.Player
         private int _currentEra;
 
         private bool _isPresenceDisposableRocket;
+
+        private bool _isInit;
 
         public int StartHealth => _startHealth;
         public int CurrentHealth => _currentHealth;
@@ -78,6 +81,9 @@ namespace RunnerAirplane.Gameplay.Player
 
         private void UpdateHealth(int value)
         {
+            if (_isInit && LevelHandler.PauseGame)
+                return;
+            
             _currentHealth = value;
 
             int health = _currentHealth - _temporaryHealth;
@@ -106,13 +112,13 @@ namespace RunnerAirplane.Gameplay.Player
             
             _currentPrefabEra = Instantiate(prefabEra, transform);
             _currentPrefabEra.transform.parent = transform;
+            _isInit = true;
         }
         
         private void Explosion()
         {
-            Bullet bullet = _poolBullets.GetBullet(BulletType.Explosion);
+            Bullet bullet = _poolBullets.GetBullet(BulletType.ExplosionEffect);
             bullet.Init(transform.position);
-            bullet.transform.localScale = new Vector3(_explosionScale, _explosionScale, _explosionScale);
         }
 
         private void Die()

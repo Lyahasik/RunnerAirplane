@@ -322,6 +322,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6228304220936047389}
   - component: {fileID: 6228304220936047386}
+  - component: {fileID: 1889397473256522333}
+  - component: {fileID: 3213059855695593186}
   m_Layer: 0
   m_Name: HelicopterEra2
   m_TagString: Untagged
@@ -363,11 +365,41 @@ MonoBehaviour:
   _currentHealth: 0
   _textHealth: {fileID: 1373965104603772270}
   _poolBullets: {fileID: 0}
-  _combatEndDistance: 3
+  _combatEndDistance: 8
   _delayStartFire: 1
+  _explosionShiftPosition: {x: 0, y: 0, z: 0}
   _weapon: {fileID: 6228304222471560714}
   _shotDelay: 0.3
   _delayDamage: 0
+--- !u!65 &1889397473256522333
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228304220936047388}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3852853, y: 5.1985607, z: 3.5924883}
+  m_Center: {x: 0.000000059604645, y: 0, z: 0.5779278}
+--- !u!54 &3213059855695593186
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228304220936047388}
+  serializedVersion: 2
+  m_Mass: 1000
+  m_Drag: 1000
+  m_AngularDrag: 1000
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &6228304222471560714
 GameObject:
   m_ObjectHideFlags: 0

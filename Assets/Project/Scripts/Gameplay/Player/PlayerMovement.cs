@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using RunnerAirplane.Core;
 using RunnerAirplane.Helpers;
 
 namespace RunnerAirplane.Gameplay.Player
@@ -68,6 +69,9 @@ namespace RunnerAirplane.Gameplay.Player
 
         public void TakeStepMove(Vector3 step)
         {
+            if (LevelHandler.PauseGame)
+                return;
+            
             step *= Time.deltaTime;
             
             TakeStepTurn(step.x);

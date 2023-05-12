@@ -873,11 +873,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 730635532347753195, guid: df9fdc6cbb3bd5f4d889934819ec853d,
         type: 3}
-      propertyPath: _combatDistance
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 730635532347753195, guid: df9fdc6cbb3bd5f4d889934819ec853d,
-        type: 3}
       propertyPath: _playerFakeCombat
       value: 
       objectReference: {fileID: 7949898775493156939}

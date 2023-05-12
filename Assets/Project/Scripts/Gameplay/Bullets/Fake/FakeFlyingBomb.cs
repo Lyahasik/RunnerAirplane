@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using RunnerAirplane.Core;
+
 namespace RunnerAirplane.Gameplay.Bullets.Fake
 {
     [RequireComponent(typeof(Rigidbody))]
@@ -19,7 +21,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Fake
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        public override void Init(Vector3 position, Transform targetTransform, int damage = 0)
+        public override void Init(Vector3 position, Transform targetTransform, int damage = 0, bool isPlayerWeapon = false)
         {
             transform.position = position;
             _targetTransform = targetTransform;
@@ -29,6 +31,9 @@ namespace RunnerAirplane.Gameplay.Bullets.Fake
 
         private void FixedUpdate()
         {
+            if (LevelHandler.PauseGame)
+                return;
+            
             if (!_targetTransform
                 || Vector3.Distance(_rigidbody.transform.position, _targetTransform.position) <= _distanceExplosion
                 || _rigidbody.transform.position.y < _bottomLineDestruction)

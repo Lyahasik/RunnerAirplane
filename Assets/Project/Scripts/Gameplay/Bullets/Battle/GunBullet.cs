@@ -36,6 +36,9 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
 
         private void Movement()
         {
+            if (LevelHandler.PauseGame)
+                return;
+            
             if (!_isActive)
                 return;
             
@@ -74,7 +77,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
 
         private void Explosion()
         {
-            Bullet bullet = _poolBullets.GetBullet(BulletType.Explosion);
+            Bullet bullet = _poolBullets.GetBullet(BulletType.ExplosionBullet);
             bullet.Init(transform.position);
             bullet.transform.localScale = new Vector3(_explosionScale, _explosionScale, _explosionScale);
                 

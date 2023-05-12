@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using RunnerAirplane.Core;
 using RunnerAirplane.Gameplay.Objects;
 using RunnerAirplane.Gameplay.Player;
 
@@ -36,6 +37,9 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
 
         private void Update()
         {
+            if (LevelHandler.PauseGame)
+                return;
+            
             Movement();
         }
 
@@ -54,7 +58,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
 
         private void Explosion()
         {
-            Bullet bullet = _poolBullets.GetBullet(BulletType.Explosion);
+            Bullet bullet = _poolBullets.GetBullet(BulletType.ExplosionBullet);
             bullet.Init(transform.position, _damage);
             bullet.transform.localScale = new Vector3(_explosionScale, _explosionScale, _explosionScale);
             

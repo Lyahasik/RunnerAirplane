@@ -7,6 +7,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
 {
     public class Explosion : Bullet
     {
+        [SerializeField] private BulletType _type;
         [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private float _lifeTime;
         private int _damage;
@@ -25,7 +26,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
         private void ReturnBullet()
         {
             _particleSystem.Stop();
-            _poolBullets.ReturnBullet(this, BulletType.Explosion);
+            _poolBullets.ReturnBullet(this, _type);
         }
 
         private void MakeDamage(PlayerData playerData)

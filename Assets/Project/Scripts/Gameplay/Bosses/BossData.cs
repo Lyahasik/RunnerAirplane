@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 
+using RunnerAirplane.Core;
+
 namespace RunnerAirplane.Gameplay.Bosses
 {
     [RequireComponent(typeof(Rigidbody))]
@@ -24,6 +26,9 @@ namespace RunnerAirplane.Gameplay.Bosses
 
         public void CalculateNewHealth(int value)
         {
+            if (LevelHandler.PauseGame)
+                return;
+            
             UpdateHealth(_currentHealth - value);
         }
 

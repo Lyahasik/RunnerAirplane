@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 
+using RunnerAirplane.Core;
 using RunnerAirplane.Gameplay.Objects;
 using RunnerAirplane.Gameplay.Player;
 
@@ -42,6 +42,9 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
 
         private void Update()
         {
+            if (LevelHandler.PauseGame)
+                return;
+            
             MakeDamage();
         }
 

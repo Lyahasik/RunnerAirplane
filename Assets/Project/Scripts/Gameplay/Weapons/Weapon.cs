@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using RunnerAirplane.Core;
 using RunnerAirplane.Core.Pool;
 using RunnerAirplane.Gameplay.Bullets;
 
@@ -30,6 +31,9 @@ namespace RunnerAirplane.Gameplay.Weapons
 
         protected virtual void Update()
         {
+            if (LevelHandler.PauseGame)
+                return;
+            
             Fire();
         }
 

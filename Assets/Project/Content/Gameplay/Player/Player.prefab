@@ -116,7 +116,7 @@ RectTransform:
   m_Children:
   - {fileID: 2716891779524907591}
   m_Father: {fileID: 7949898775609578642}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 7949898775609578642}
   - component: {fileID: 152089819}
   - component: {fileID: 2098357127554025238}
-  - component: {fileID: 152089820}
+  - component: {fileID: 1001710176862923140}
   - component: {fileID: 152089817}
   - component: {fileID: 152089818}
   - component: {fileID: 8339945348571600856}
@@ -360,7 +360,6 @@ Transform:
   - {fileID: 1248404439590367302}
   - {fileID: 1863295459981676004}
   - {fileID: 7187847517282654095}
-  - {fileID: 4637445428965835240}
   - {fileID: 375580081176289929}
   - {fileID: 5571122738568397421}
   - {fileID: 3810323669168617859}
@@ -396,8 +395,8 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 1.5}
---- !u!65 &152089820
-BoxCollider:
+--- !u!136 &1001710176862923140
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -406,8 +405,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 10, z: 1}
+  m_Radius: 0.4
+  m_Height: 3.9398317
+  m_Direction: 0
   m_Center: {x: 0, y: 0, z: 1}
 --- !u!114 &152089817
 MonoBehaviour:
@@ -460,8 +460,7 @@ MonoBehaviour:
   _shotDelay: 0.15
   _rocketLauncher: {fileID: 4814208391210752394}
   _delayDieEnemy: 1
-  _bombLauncher: {fileID: 8024806378986827991}
-  _delayLaunchBomb: 2
+  _delayLaunchRocket: 1
 --- !u!114 &5896328490497784561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,37 +478,6 @@ MonoBehaviour:
   - {fileID: 5571122738568397420}
   _lookAtUI: {fileID: 3679433956789176758}
   _rectTransformHealth: {fileID: 2716891779524907591}
---- !u!1 &8024806378986827991
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4637445428965835240}
-  m_Layer: 0
-  m_Name: FakeBombLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4637445428965835240
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8024806378986827991}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7949898775609578642}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9108132998469735527
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 4509022326109052475, guid: 0807524d57f0ac5458b2ff19f6df6a79,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4509022326109052475, guid: 0807524d57f0ac5458b2ff19f6df6a79,
         type: 3}
@@ -767,7 +735,7 @@ PrefabInstance:
     - target: {fileID: 4509022326109052475, guid: 0807524d57f0ac5458b2ff19f6df6a79,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4509022326109052475, guid: 0807524d57f0ac5458b2ff19f6df6a79,
         type: 3}

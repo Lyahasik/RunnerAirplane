@@ -23,8 +23,7 @@ namespace RunnerAirplane.Gameplay.Player
         [SerializeField] private float _delayDieEnemy;
         
         [Space]
-        [SerializeField] private GameObject _bombLauncher;
-        [SerializeField] private float _delayLaunchBomb;
+        [SerializeField] private float _delayLaunchRocket;
 
         private PlayerMovement _playerMovement;
         private PlayerData _playerData;
@@ -59,7 +58,7 @@ namespace RunnerAirplane.Gameplay.Player
         private void Update()
         {
             FireGun();
-            FireBombLauncher();
+            FireRocketLauncher();
         }
 
         public bool TryStartCombat(FakeEnemy fakeEnemy)
@@ -80,7 +79,7 @@ namespace RunnerAirplane.Gameplay.Player
             if (_fakeEnemy is AirDefense)
             {
                 _enemyAirDefence = true;
-                _startLaunchBomb = Time.time + _delayLaunchBomb;
+                _startLaunchBomb = Time.time + _delayLaunchRocket;
             }
             
             _isActiveCombat = true;
@@ -94,8 +93,8 @@ namespace RunnerAirplane.Gameplay.Player
             if (!_fakeEnemy)
                 return;
 
-            Bullet bullet = _poolBullets.GetBullet(BulletType.FakeRocket);
-            bullet.Init(_bombLauncher.transform.position, _fakeEnemy.transform);
+            Bullet bullet = _poolBullets.GetBullet(BulletType.DisposableRocket);
+            bullet.Init(_rocketLauncher.transform.position, _fakeEnemy.transform, 0, true);
             _fakeEnemy.Die(_delayDieEnemy);
             _diedEnemy = _fakeEnemy;
             _fakeEnemy = null;
@@ -126,13 +125,13 @@ namespace RunnerAirplane.Gameplay.Player
 
             Bullet bullet1 = _poolBullets.GetBullet(BulletType.FakeBullet);
             Bullet bullet2 = _poolBullets.GetBullet(BulletType.FakeBullet);
-            bullet1.Init(_gun1.transform.position, _fakeEnemy.transform);
-            bullet2.Init(_gun2.transform.position, _fakeEnemy.transform);
+            bullet1.Init(_gun1.transform.position, _fakeEnemy.transform, 0, true);
+            bullet2.Init(_gun2.transform.position, _fakeEnemy.transform, 0, true);
 
             _nextFireTime = Time.time + _shotDelay;
         }
 
-        private void FireBombLauncher()
+        private void FireRocketLauncher()
         {
             if (!_isActiveCombat
                 || !_fakeEnemy
@@ -141,8 +140,8 @@ namespace RunnerAirplane.Gameplay.Player
                 || _isEmpty)
                 return;
 
-            Bullet bullet = _poolBullets.GetBullet(BulletType.FakeFlyingBomb);
-            bullet.Init(_bombLauncher.transform.position, _fakeEnemy.transform);
+            Bullet bullet = _poolBullets.GetBullet(BulletType.FakeRocket);
+            bullet.Init(_rocketLauncher.transform.position, _fakeEnemy.transform, 0, true);
             
             _isEmpty = true;
         }

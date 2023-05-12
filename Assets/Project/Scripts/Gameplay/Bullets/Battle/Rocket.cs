@@ -25,6 +25,9 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
 
         private void Update()
         {
+            if (LevelHandler.PauseGame)
+                return;
+            
             Movement();
         }
 
