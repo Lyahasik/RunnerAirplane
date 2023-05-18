@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082233ac6eb386042bf3a4fbe56bf3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distanceExplosion: 2
+  _type: 11
   _explosionScale: 5
   _speedMove: 15
 --- !u!65 &3526220896767101013

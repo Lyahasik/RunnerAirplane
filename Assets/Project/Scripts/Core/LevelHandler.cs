@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
@@ -55,6 +56,8 @@ namespace RunnerAirplane.Core
         private bool _isActiveBattle;
 
         public static bool PauseGame = true;
+
+        public static event Action OnStartBattle;
 
         private void Start()
         {
@@ -166,6 +169,7 @@ namespace RunnerAirplane.Core
             _playerMovement.RangeVerticalMovement = _battleRangeVerticalMovement;
             
             _isActiveBattle = true;
+            OnStartBattle?.Invoke();
 
             foreach (Boss boss in _bosses)
             {

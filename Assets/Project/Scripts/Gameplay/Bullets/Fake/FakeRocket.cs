@@ -9,7 +9,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Fake
     [RequireComponent(typeof(Collider))]
     public class FakeRocket : Bullet
     {
-        [SerializeField] private float _distanceExplosion;
+        [SerializeField] private BulletType _type;
         [SerializeField] private float _explosionScale;
         [SerializeField] private float _speedMove;
 
@@ -58,7 +58,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Fake
             bullet.Init(transform.position);
             bullet.transform.localScale = new Vector3(_explosionScale, _explosionScale, _explosionScale);
                 
-            _poolBullets.ReturnBullet(this, BulletType.FakeRocket);
+            _poolBullets.ReturnBullet(this, _type);
         }
         
         private void OnTriggerEnter(Collider other)
