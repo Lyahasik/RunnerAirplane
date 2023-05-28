@@ -9,8 +9,10 @@ namespace RunnerAirplane.UI.Main
 
         public void Switch()
         {
-            _closing.SetActive(false);
-            _opening.SetActive(true);
+            if (_closing)
+                _closing.SetActive(false);
+            if (_opening)
+                _opening.SetActive(true);
         }
     }
 }

@@ -1,5 +1,3 @@
-using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,14 +12,7 @@ namespace RunnerAirplane.UI.Main.Angar
         [SerializeField] private FullListEraData _fullListEraData;
         [SerializeField] private ListSelectedEraData _listSelectedEraData;
 
-        [Space]
-        [SerializeField] private GameObject _buttonBuy;
-        [SerializeField] private TMP_Text _buttonBuyText;
-        [SerializeField] private GameObject _buttonActive;
-
         private Skin _currentSkin;
-        
-        public static event Action<int, int> OnSelectSkin;
 
         private void Awake()
         {
@@ -37,13 +28,12 @@ namespace RunnerAirplane.UI.Main.Angar
         {
             _currentSkin = skin;
 
-            UpdateButton();
             if (_currentSkin)
             {
                 SetSkinImage(_currentSkin.SpriteIcon, _currentSkin.Color);
+                UnlockSkin();
+                ActivateSkin();
             }
-            
-            OnSelectSkin?.Invoke(_currentSkin.EraNumber, _currentSkin.SkinNumber);
         }
 
         private void UpdateSkinPrefab(int eraNumber, int skinNumber)
@@ -68,33 +58,6 @@ namespace RunnerAirplane.UI.Main.Angar
             _selectedSkinImage.color = color;
         }
 
-        private void UpdateButton()
-        {
-            if (!_currentSkin)
-            {
-                _buttonBuy.SetActive(false);
-                _buttonActive.SetActive(false);
-                return;
-            }
-
-            if (_currentSkin.IsActive)
-            {
-                _buttonBuy.SetActive(false);
-                _buttonActive.SetActive(false);
-            }
-            else if (_currentSkin.IsUnlock)
-            {
-                _buttonBuy.SetActive(false);
-                _buttonActive.SetActive(true);
-            }
-            else
-            {
-                _buttonBuy.SetActive(true);
-                _buttonBuyText.text = _currentSkin.Price.ToString();
-                _buttonActive.SetActive(false);
-            }
-        }
-
         public void UnlockSkin()
         {
             int numberMoney = ProcessingProgress.GetNumberMoney();
@@ -106,19 +69,15 @@ namespace RunnerAirplane.UI.Main.Angar
             ProcessingProgress.UnlockSkin(_currentSkin.EraNumber, _currentSkin.SkinNumber);
             _currentSkin.Unlock();
             SetSkinImage(_currentSkin.SpriteIcon, _currentSkin.Color);
-            
-            _buttonBuy.SetActive(false);
-            _buttonActive.SetActive(true);
-            
-            OnSelectSkin?.Invoke(_currentSkin.EraNumber, _currentSkin.SkinNumber);
         }
 
         public void ActivateSkin()
         {
+            if (!_currentSkin.IsUnlock)
+                return;
+            
             ProcessingProgress.ActivateSkin(_currentSkin.EraNumber, _currentSkin.SkinNumber);
             UpdateSkinPrefab(_currentSkin.EraNumber, _currentSkin.SkinNumber);
-            
-            _buttonActive.SetActive(false);
         }
     }
 }

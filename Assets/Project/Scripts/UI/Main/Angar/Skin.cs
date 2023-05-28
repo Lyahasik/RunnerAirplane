@@ -3,15 +3,20 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 using RunnerAirplane.Gameplay.Progress;
+using TMPro;
 
 namespace RunnerAirplane.UI.Main.Angar
 {
-    public class Skin : MonoBehaviour, IPointerDownHandler, ISelectHandler
+    public class Skin : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ISelectHandler
     {
         [SerializeField] private AngarWindow _angarWindow;
 
         [Space]
         [SerializeField] private int _price;
+        [SerializeField] private GameObject _priceObject;
+        [SerializeField] private TMP_Text _priceText;
+        
+        [Space]
         [SerializeField] private int _eraNumber;
         [SerializeField] private int _skinNumber;
         
@@ -22,6 +27,8 @@ namespace RunnerAirplane.UI.Main.Angar
         private bool _isUnlock;
         private bool _isActive;
 
+        private Vector2 _pointDown;
+
         public int Price => _price;
 
         public int EraNumber => _eraNumber;
@@ -31,7 +38,6 @@ namespace RunnerAirplane.UI.Main.Angar
         public Color Color => _icon.color;
 
         public bool IsUnlock => _isUnlock;
-        public bool IsActive => _isActive;
 
         private void OnEnable()
         {
@@ -39,47 +45,26 @@ namespace RunnerAirplane.UI.Main.Angar
             TryActivate();
             
             ProcessingProgress.OnActiveSkin += UpdateActiveSkin;
-            AngarWindow.OnSelectSkin += UpdateSelectSkin;
         }
 
         private void OnDisable()
         {
             ProcessingProgress.OnActiveSkin -= UpdateActiveSkin;
-            AngarWindow.OnSelectSkin -= UpdateSelectSkin;
         }
 
         private void UpdateActiveSkin(int eraNumber, int skinNumber)
         {
             if (_eraNumber != eraNumber)
                 return;
-
+            
             if (_skinNumber == skinNumber)
             {
                 _isActive = true;
-                _frameImage.color = Color.blue;
                 _frameImage.enabled = true;
             }
             else
             {
                 _isActive = false;
-                
-                _frameImage.enabled = false;
-            }
-        }
-
-        private void UpdateSelectSkin(int eraNumber, int skinNumber)
-        {
-            if (_isActive)
-                return;
-            
-            if (_eraNumber == eraNumber
-                && _skinNumber == skinNumber)
-            {
-                _frameImage.color = Color.yellow;
-                _frameImage.enabled = true;
-            }
-            else
-            {
                 _frameImage.enabled = false;
             }
         }
@@ -88,7 +73,11 @@ namespace RunnerAirplane.UI.Main.Angar
         {
             _isUnlock = ProcessingProgress.CheckUnlockSkin(_eraNumber, _skinNumber);
             
-            _icon.color = _isUnlock ? Color.white : Color.black;
+            if (!_isUnlock)
+            {
+                _priceObject.SetActive(true);
+                _priceText.text = _price.ToString();
+            }
         }
 
         public void TryActivate()
@@ -97,12 +86,7 @@ namespace RunnerAirplane.UI.Main.Angar
 
             if (_isActive)
             {
-                _frameImage.color = Color.blue;
                 _frameImage.enabled = true;
-            }
-            else
-            {
-                _frameImage.enabled = false;
             }
         }
 
@@ -110,12 +94,23 @@ namespace RunnerAirplane.UI.Main.Angar
         {
             _isUnlock = true;
             
-            _icon.color = Color.white;
+            _priceObject.SetActive(false);
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            EventSystem.current.SetSelectedGameObject(gameObject, eventData);
+            Debug.Log("Down");
+            _pointDown = eventData.pressPosition;
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            Debug.Log("Up");
+
+            if (Input.touchCount == 0
+                && (_isUnlock
+                || ProcessingProgress.GetNumberMoney() >= _price))
+                EventSystem.current.SetSelectedGameObject(gameObject, eventData);
         }
 
         public void OnSelect(BaseEventData eventData)

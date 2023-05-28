@@ -18,6 +18,7 @@ namespace RunnerAirplane.Core
         private const int _levelMultiplier = 10;
         
         [SerializeField] private LevelMenu _levelMenu;
+        [SerializeField] private GameObject _menuWindow;
         
         [Space]
         [SerializeField] private float _speedMove;
@@ -41,9 +42,7 @@ namespace RunnerAirplane.Core
         private PlayerMovement _playerMovement;
         private PlayerAttack _playerAttack;
 
-        private Material _materialRoad;
         private Material _materialBattlefield;
-        private Vector2 _offset;
         private Vector2 _offsetBattle;
 
         private Camera _camera;
@@ -51,7 +50,8 @@ namespace RunnerAirplane.Core
         private float _distanceBetweenOffsets;
         private Quaternion _startCameraRotation;
         private Quaternion _endCameraRotation;
-        
+
+        private bool _isActiveGame;
         private bool _isBattle;
         private bool _isActiveBattle;
 
@@ -68,7 +68,8 @@ namespace RunnerAirplane.Core
             _playerData = _player.GetComponent<PlayerData>();
             _playerMovement = _player.GetComponent<PlayerMovement>();
             _playerAttack = _player.GetComponent<PlayerAttack>();
-            
+
+            _road.transform.Translate(Vector3.down * 8);
             InitMaterials();
         }
 
@@ -85,9 +86,6 @@ namespace RunnerAirplane.Core
 
         private void InitMaterials()
         {
-            _materialRoad = _road.GetComponent<MeshRenderer>().material;
-            _offset = _materialRoad.mainTextureOffset;
-
             if (_battlefield)
             {
                 _materialBattlefield = _battlefield.GetComponent<MeshRenderer>().material;
@@ -99,6 +97,12 @@ namespace RunnerAirplane.Core
         {
             if (PauseGame)
                 return;
+
+            if (!PauseGame && !_isActiveGame)
+            {
+                _isActiveGame = true;
+                _menuWindow.SetActive(false);
+            }
 
             Movement();
             MovementBattle();
@@ -112,9 +116,6 @@ namespace RunnerAirplane.Core
                 return;
             
             float step = _speedMove * Time.deltaTime;
-
-            _offset.y -= step / _materialRoad.mainTextureScale.y;
-            _materialRoad.mainTextureOffset = _offset;
             
             _movingObjects.transform.Translate(new Vector3(0f, 0f, -step));
 

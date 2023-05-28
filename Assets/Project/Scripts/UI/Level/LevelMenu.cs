@@ -13,13 +13,22 @@ namespace RunnerAirplane.UI.Level
 
         [Space]
         [SerializeField] private TMP_Text _textLevel;
+        [SerializeField] private GameObject _menuWindow;
+        
+        [Space]
         [SerializeField] private GameObject _successGameWindow;
+        [SerializeField] private TMP_Text _textSuccessLevel;
+        
+        [Space]
         [SerializeField] private GameObject _gameOverWindow;
         [SerializeField] private Wallet _wallet;
 
         private void Start()
         {
-            _textLevel.text = $"Level {SceneManager.GetActiveScene().buildIndex}";
+            int levelNumber = SceneManager.GetActiveScene().buildIndex;
+            
+            _textLevel.text = $"Level {levelNumber}";
+            _textSuccessLevel.text = $"LEVEL {levelNumber}";
         }
 
         public void SuccessGame(int money)

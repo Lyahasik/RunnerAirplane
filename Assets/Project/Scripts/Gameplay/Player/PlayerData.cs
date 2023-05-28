@@ -66,17 +66,25 @@ namespace RunnerAirplane.Gameplay.Player
                     UpdateHealth(_currentHealth + value);
                     break;
                 case MathOperationType.Subtraction:
-                    Handheld.Vibrate();
+                    Vibrate();
                     UpdateHealth(_currentHealth - value);
                     break;
                 case MathOperationType.Multiplication:
                     UpdateHealth(_currentHealth * value);
                     break;
                 case MathOperationType.Division:
-                    Handheld.Vibrate();
+                    Vibrate();
                     UpdateHealth(_currentHealth / value);
                     break;
             }
+        }
+
+        private void Vibrate()
+        {
+            if (!Settings.VibrationOn)
+                return;
+            
+            Handheld.Vibrate();
         }
 
         private void UpdateHealth(int value)

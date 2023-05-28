@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +25,10 @@ namespace RunnerAirplane.Gameplay.Bosses
         {
             _movementToPoint = GetComponent<MovementToPoint>();
             _teleport = GetComponent<Teleport>();
+        }
+
+        private void Start()
+        {
             _timeStartAttack = Time.time + _delayStartAttack;
         }
 

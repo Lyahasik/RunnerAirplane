@@ -12,9 +12,13 @@ namespace RunnerAirplane.UI.Main
         [SerializeField] private SceneController _sceneController;
         [SerializeField] private GameObject _presentation;
 
+        [SerializeField] private Settings _settings;
+
         private void OnEnable()
         {
-            _presentation.SetActive(true);
+            if (_presentation)
+                _presentation.SetActive(true);
+            _settings.UpdateSettings();
         }
 
         private void OnDisable()
@@ -36,6 +40,7 @@ namespace RunnerAirplane.UI.Main
         public void ResetGame()
         {
             ProcessingProgress.ResetAll();
+            ProcessingProgress.UpdateNumberMoney(1000);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 using RunnerAirplane.Core;
@@ -10,6 +11,11 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
     public class Laser : Bullet
     {
         private int _damage;
+        [SerializeField] private GameObject _base;
+        [SerializeField] private Vector2 _scaleBase;
+        [SerializeField] private Vector2 _scaleActive;
+        
+        [Space]
         [SerializeField] private ParticleSystem _visualEffect;
         [SerializeField] private float _delayActivateDamage;
         [SerializeField] private float _delayMakeDamage;
@@ -31,12 +37,15 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             transform.rotation = Quaternion.LookRotation(direction);
 
             _damage = damage;
-            _visualEffect.Play();
+            _base.transform.localScale = new Vector3(_scaleBase.x, _scaleBase.y, _base.transform.localScale.z);
             Invoke(nameof(ActivateDamage), _delayActivateDamage);
         }
 
         private void ActivateDamage()
         {
+            _visualEffect.Play();
+            _base.transform.localScale = new Vector3(_scaleActive.x, _scaleActive.y, _base.transform.localScale.z);
+            
             _collider.enabled = true;
         }
 
