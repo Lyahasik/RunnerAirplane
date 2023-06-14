@@ -9,7 +9,7 @@ namespace RunnerAirplane.UI.Level
 {
     public class LevelMenu : MonoBehaviour
     {
-        [SerializeField] private SceneController _sceneController;
+        private SceneController _sceneController;
 
         [Space]
         [SerializeField] private TMP_Text _textLevel;
@@ -25,6 +25,8 @@ namespace RunnerAirplane.UI.Level
 
         private void Start()
         {
+            _sceneController = FindObjectOfType<SceneController>();
+            
             int levelNumber = SceneManager.GetActiveScene().buildIndex;
             
             _textLevel.text = $"Level {levelNumber}";
@@ -45,11 +47,6 @@ namespace RunnerAirplane.UI.Level
         public void Restart()
         {
             _sceneController.Restart();
-        }
-        
-        public void StartMainScene()
-        {
-            _sceneController.StartMainScene();
         }
 
         public void PreviousScene()

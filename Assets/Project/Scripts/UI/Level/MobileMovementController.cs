@@ -13,12 +13,17 @@ namespace RunnerAirplane.UI.Level
         
         [SerializeField] private GameObject _promptMove;
 
+        private bool _isStarted;
+
         public void OnDrag(PointerEventData eventData)
         {
-            if (LevelHandler.PauseGame)
+            if (!_isStarted
+                && LevelHandler.PauseGame)
             {
                 LevelHandler.PauseGame = false;
                 _promptMove.SetActive(false);
+
+                _isStarted = true;
             }
             
             Vector3 step = new Vector3(eventData.delta.x * _touchSensitivity, 0f, eventData.delta.y * _touchSensitivity);

@@ -2,24 +2,30 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 
+using EasyHaptic_EvilBurgers;
+
 using RunnerAirplane.Core;
+using RunnerAirplane.Core.Audio;
 using RunnerAirplane.Core.Pool;
 using RunnerAirplane.Gameplay.Bullets;
 using RunnerAirplane.Gameplay.Objects;
 using RunnerAirplane.ScriptableObjects;
+using RunnerAirplane.UI.Main;
+using AudioType = RunnerAirplane.Core.Audio.AudioType;
 
 namespace RunnerAirplane.Gameplay.Player
 {
     public class PlayerData : MonoBehaviour
     {
+        private AudioHandler _audioHandler;
+        
         private PoolBullets _poolBullets;
         
         [SerializeField] private int _startHealth;
         [SerializeField] private TMP_Text _textHealth;
-        [SerializeField] private float _explosionScale;
 
         [SerializeField] private ListSelectedEraData _listSelectedEra;
-        private GameObject _currentPrefabEra;
+        private Technique _currentPrefabEra;
 
         private int _currentHealth;
         private int _temporaryHealth;
@@ -54,6 +60,8 @@ namespace RunnerAirplane.Gameplay.Player
 
         private void Start()
         {
+            _audioHandler = FindObjectOfType<AudioHandler>();
+            
             _poolBullets = GetComponent<PlayerFakeCombat>().PoolBullets;
             UpdateHealth(_startHealth);
         }
@@ -83,8 +91,14 @@ namespace RunnerAirplane.Gameplay.Player
         {
             if (!Settings.VibrationOn)
                 return;
+
+            CustomVibrationData custom = new CustomVibrationData();
+
+            custom.durationInSeconds = 0.2f;
+            custom.amplitude = 10;
+            custom.sharpness = 10;
             
-            Handheld.Vibrate();
+            EasyHaptic.PlayCustom(custom);
         }
 
         private void UpdateHealth(int value)
@@ -108,19 +122,41 @@ namespace RunnerAirplane.Gameplay.Player
 
         private void UpdateEra()
         {
-            GameObject prefabEra = _listSelectedEra.ListEra
+            if (TryUpdateSkin())
+                ActiveAudio();
+            
+            _isInit = true;
+        }
+
+        public bool TryUpdateSkin()
+        {
+            Technique prefabEra = _listSelectedEra.ListEra
                 .First(data => _currentHealth >= data.MinValue && _currentHealth <= data.MaxValue)
                 .Prefab;
-
-            if (prefabEra == _currentPrefabEra)
-                return;
+            
+            if (_currentPrefabEra
+                && prefabEra.Id == _currentPrefabEra.Id)
+                return false;
 
             if (_currentPrefabEra)
-                Destroy(_currentPrefabEra);
-            
+                Destroy(_currentPrefabEra.gameObject);
+
             _currentPrefabEra = Instantiate(prefabEra, transform);
             _currentPrefabEra.transform.parent = transform;
-            _isInit = true;
+            
+            return true;
+        }
+
+        public void ActiveAudio(bool isStart = false)
+        {
+            if (!_isInit)
+                return;
+            
+            _audioHandler.StopSoundAll();
+            
+            if (!isStart)
+                _audioHandler.PlayBaseSound(AudioType.SoundUpdateEra);
+            _audioHandler.PlayBaseSound(_currentPrefabEra.AudioType);
         }
         
         private void Explosion()
@@ -133,6 +169,9 @@ namespace RunnerAirplane.Gameplay.Player
         {
             Explosion();
             Destroy(gameObject);
+            
+            _audioHandler.StopSoundAll();
+            _audioHandler.PlayBaseSound(AudioType.SoundExplosionTechnique);
         }
     }
 }

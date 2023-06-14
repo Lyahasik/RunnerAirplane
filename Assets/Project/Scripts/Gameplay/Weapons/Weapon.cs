@@ -1,15 +1,20 @@
 using UnityEngine;
 
 using RunnerAirplane.Core;
+using RunnerAirplane.Core.Audio;
 using RunnerAirplane.Core.Pool;
 using RunnerAirplane.Gameplay.Bullets;
+using AudioType = RunnerAirplane.Core.Audio.AudioType;
 
 namespace RunnerAirplane.Gameplay.Weapons
 {
     public abstract class Weapon : MonoBehaviour
     {
+        private AudioHandler _audioHandler;
+        
         [SerializeField] protected PoolBullets _poolBullets;
         [SerializeField] protected BulletType _bulletType;
+        [SerializeField] protected AudioType _audioType;
         [SerializeField] protected bool _isPlayerWeapon;
 
         [Space]
@@ -29,6 +34,11 @@ namespace RunnerAirplane.Gameplay.Weapons
             }
         }
 
+        public void Init(AudioHandler audioHandler)
+        {
+            _audioHandler = audioHandler;
+        }
+
         protected virtual void Update()
         {
             if (LevelHandler.PauseGame)
@@ -46,6 +56,9 @@ namespace RunnerAirplane.Gameplay.Weapons
 
             Bullet bullet = _poolBullets.GetBullet(_bulletType);
             bullet.Init(_muzzle.transform.position, _muzzle.transform.forward, _damage, _isPlayerWeapon);
+            
+            if (_audioHandler)
+                _audioHandler.PlayBattleSound(_audioType);
 
             _nextFireTime = Time.time + _delayFire;
         }

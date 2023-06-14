@@ -1,14 +1,18 @@
 using UnityEngine;
 using TMPro;
 
+using RunnerAirplane.Core.Audio;
 using RunnerAirplane.Core.Pool;
 using RunnerAirplane.Gameplay.Bullets;
 using RunnerAirplane.Gameplay.Player;
+using AudioType = RunnerAirplane.Core.Audio.AudioType;
 
 namespace RunnerAirplane.Gameplay.Enemies
 {
     public class FakeEnemy : MonoBehaviour
     {
+        private AudioHandler _audioHandler;
+        
         [SerializeField] protected int _health;
         [SerializeField] protected int _currentHealth;
         [SerializeField] private TMP_Text _textHealth;
@@ -36,6 +40,11 @@ namespace RunnerAirplane.Gameplay.Enemies
         protected virtual void Awake()
         {
             SetHealth(_health);
+        }
+
+        protected virtual void Start()
+        {
+            _audioHandler = FindObjectOfType<AudioHandler>();
         }
 
         protected virtual void Update()
@@ -76,17 +85,13 @@ namespace RunnerAirplane.Gameplay.Enemies
                 _playerFakeCombat.EndCombat(_health);
                 
                 Die(0f);
-                
-                // Bullet bullet = _poolBullets.GetBullet(BulletType.ExplosionEffect);
-                // bullet.Init(transform.position + _explosionShiftPosition);
-                // bullet.transform.parent = transform.parent;
-                //
-                // Destroy(gameObject);
             }
         }
 
         public void Die(float delayDie)
         {
+            _audioHandler.PlayBaseSound(AudioType.SoundExplosionTechnique);
+            
             Invoke(nameof(Explosion), delayDie);
             Destroy(gameObject, delayDie);
         }

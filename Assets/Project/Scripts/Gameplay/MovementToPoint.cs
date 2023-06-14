@@ -8,12 +8,17 @@ namespace RunnerAirplane.Gameplay
     {
         [SerializeField] private float _speedMove;
         [SerializeField] private List<PointMovementData> _positions;
+        [SerializeField] private bool _isLooped = true;
         private float _nextTimeSwitch;
 
         private float _distantionMove;
         private Vector3 _directionMove;
         private Transform _target;
         private int _targetId;
+
+        private bool _isStop;
+
+        public bool IsStop => _isStop;
 
         private void Start()
         {
@@ -27,7 +32,8 @@ namespace RunnerAirplane.Gameplay
 
         private void StepMove()
         {
-            if (_nextTimeSwitch > Time.time)
+            if (_isStop
+                || _nextTimeSwitch > Time.time)
                 return;
             
             float distantionStep = _speedMove * Time.deltaTime;
@@ -36,6 +42,7 @@ namespace RunnerAirplane.Gameplay
             if (_distantionMove - Math.Abs(distantionStep) < 0)
             {
                 step = _directionMove * distantionStep;
+
                 NextTarget();
             }
             else
@@ -50,6 +57,14 @@ namespace RunnerAirplane.Gameplay
 
         public void NextTarget()
         {
+            if (_target
+                && !_isLooped
+                && _targetId + 1 == _positions.Count)
+            {
+                _isStop = true;
+                return;
+            }
+            
             _target = _positions[_targetId].Point;
             
             Vector3 vectorMove = _target.position - transform.position;
@@ -57,6 +72,7 @@ namespace RunnerAirplane.Gameplay
             _directionMove = Vector3.Normalize(vectorMove);
             
             _nextTimeSwitch = Time.time + _positions[_targetId].StopTime;
+            
             _targetId = (_targetId + 1) % _positions.Count;
         }
     }

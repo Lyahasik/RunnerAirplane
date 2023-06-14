@@ -1,7 +1,7 @@
-using System;
 using System.Linq;
 using UnityEngine;
 
+using RunnerAirplane.Gameplay;
 using RunnerAirplane.Gameplay.Progress;
 using RunnerAirplane.ScriptableObjects;
 
@@ -17,7 +17,7 @@ namespace RunnerAirplane.Environment
         private Vector3 _startPosition;
         private Quaternion _startRotation;
 
-        private GameObject _currentSkin;
+        private Technique _currentSkin;
 
         private float _dotRotation;
 
@@ -39,7 +39,7 @@ namespace RunnerAirplane.Environment
                 Destroy(_currentSkin);
 
             int health = ProcessingProgress.GetLastStartHealth();
-            GameObject prefab = _listSelectedEra.ListEra
+            Technique prefab = _listSelectedEra.ListEra
                 .First(data => health >= data.MinValue && health <= data.MaxValue)
                 .Prefab;
             

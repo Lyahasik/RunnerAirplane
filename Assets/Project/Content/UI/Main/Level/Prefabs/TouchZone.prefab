@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovement: {fileID: 0}
-  _touchSensitivity: 2
+  _touchSensitivity: 1
   _promptMove: {fileID: 6962661745935688894}
 --- !u!1001 &7171213100783410658
 PrefabInstance:

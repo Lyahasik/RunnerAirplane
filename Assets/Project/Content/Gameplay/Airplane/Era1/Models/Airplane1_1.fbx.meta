@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 765d94da003bc764a93c60ea5329deb6
+guid: 8562fe091c609aa43b76d3bdb44bc211
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Air
-    second: {fileID: 2100000, guid: 76a30236a5b0a764bbe81c0e750a50f0, type: 2}
+      name: SPAD_S_VII_Final
+    second: {fileID: 2100000, guid: f91c5fbe205afe5489c026fd9dff20ef, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -71,7 +71,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

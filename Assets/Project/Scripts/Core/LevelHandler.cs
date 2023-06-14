@@ -5,11 +5,16 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using RunnerAirplane.Core.Audio;
+using RunnerAirplane.Environment;
+using RunnerAirplane.Gameplay;
 using RunnerAirplane.Gameplay.Bosses;
 using RunnerAirplane.Gameplay.Objects.Events.Gates;
 using RunnerAirplane.Gameplay.Player;
 using RunnerAirplane.Gameplay.Progress;
 using RunnerAirplane.UI.Level;
+
+using AudioType = RunnerAirplane.Core.Audio.AudioType;
 
 namespace RunnerAirplane.Core
 {
@@ -17,33 +22,33 @@ namespace RunnerAirplane.Core
     {
         private const int _levelMultiplier = 10;
         
+        private AudioHandler _audioHandler;
+        
         [SerializeField] private LevelMenu _levelMenu;
         [SerializeField] private GameObject _menuWindow;
         
         [Space]
         [SerializeField] private float _speedMove;
-        [SerializeField] private GameObject _road;
-        [SerializeField] private bool _isMovingBattlefield;
-        [SerializeField] private float _speedMoveBattlefield;
-        [SerializeField] private GameObject _battlefield;
+        [SerializeField] private GameObject _clouds;
+        [SerializeField] private float _offsetDown;
+        [SerializeField] private Battlefield _battlefield;
         [SerializeField] private GameObject _movingObjects;
 
         [Space]
+        [SerializeField] private bool _isReadyBattlefield;
         [SerializeField] private float _startBattlePositionZ;
         [SerializeField] private Vector3 _battleCameraPosition;
         [SerializeField] private Vector3 _battleCameraRotation;
         [SerializeField] private float _speedChange;
 
-        [Space] [SerializeField] private GameObject _player;
+        [Space]
+        [SerializeField] private GameObject _player;
         [SerializeField] private float _battleRangeHorizontalMovement;
         [SerializeField] private float _battleRangeVerticalMovement;
         [SerializeField] private List<Boss> _bosses;
         private PlayerData _playerData;
         private PlayerMovement _playerMovement;
         private PlayerAttack _playerAttack;
-
-        private Material _materialBattlefield;
-        private Vector2 _offsetBattle;
 
         private Camera _camera;
         private Vector3 _startCameraPosition;
@@ -61,6 +66,9 @@ namespace RunnerAirplane.Core
 
         private void Start()
         {
+            _audioHandler = FindObjectOfType<AudioHandler>();
+            _audioHandler.PlayMusic(AudioType.MusicMenu);
+                
             _camera = Camera.main;
             _startCameraPosition = _camera.transform.position;
             _startCameraRotation = _camera.transform.rotation;
@@ -69,8 +77,7 @@ namespace RunnerAirplane.Core
             _playerMovement = _player.GetComponent<PlayerMovement>();
             _playerAttack = _player.GetComponent<PlayerAttack>();
 
-            _road.transform.Translate(Vector3.down * 8);
-            InitMaterials();
+            _clouds.transform.Translate(Vector3.down * _offsetDown);
         }
 
         private void OnEnable()
@@ -84,15 +91,6 @@ namespace RunnerAirplane.Core
             PauseGame = true;
         }
 
-        private void InitMaterials()
-        {
-            if (_battlefield)
-            {
-                _materialBattlefield = _battlefield.GetComponent<MeshRenderer>().material;
-                _offsetBattle = _materialBattlefield.mainTextureOffset;
-            }
-        }
-
         private void Update()
         {
             if (PauseGame)
@@ -101,11 +99,16 @@ namespace RunnerAirplane.Core
             if (!PauseGame && !_isActiveGame)
             {
                 _isActiveGame = true;
-                _menuWindow.SetActive(false);
+                
+                _audioHandler.StopMusic(AudioType.MusicMenu);
+                _audioHandler.PlayMusic(AudioType.MusicGame);
+                _playerData.ActiveAudio(true);
+                
+                if (_menuWindow)
+                    _menuWindow.SetActive(false);
             }
 
             Movement();
-            MovementBattle();
             PrepareBattle();
             TryFinishLevel();
         }
@@ -131,6 +134,13 @@ namespace RunnerAirplane.Core
             _camera.GetComponent<CinemachineBrain>().enabled = false;
             _startCameraPosition = _camera.transform.position;
             _distanceBetweenOffsets = Vector3.Distance(_startCameraPosition, _battleCameraPosition);
+
+            _clouds.GetComponent<MovementToPoint>().enabled = true;
+            
+            if (!_isReadyBattlefield)
+            {
+                _battlefield.StartMovement();
+            }
             
             _endCameraRotation = Quaternion.Euler(_battleCameraRotation);
         }
@@ -138,6 +148,7 @@ namespace RunnerAirplane.Core
         private void PrepareBattle()
         {
             if (!_isBattle
+                || (!_isReadyBattlefield && !_battlefield.IsReady)
                 || _isActiveBattle
                 || _camera.transform.position == _battleCameraPosition)
                 return;
@@ -150,18 +161,6 @@ namespace RunnerAirplane.Core
 
             if (_camera.transform.position == _battleCameraPosition)
                 StartBattle();
-        }
-
-        private void MovementBattle()
-        {
-            if (!_isBattle
-                || !_isMovingBattlefield)
-                return;
-                
-            float step = _speedMoveBattlefield * Time.deltaTime;
-
-            _offsetBattle.y -= step / _materialBattlefield.mainTextureScale.y;
-            _materialBattlefield.mainTextureOffset = _offsetBattle;
         }
 
         private void StartBattle()
@@ -216,6 +215,7 @@ namespace RunnerAirplane.Core
         private void SuccessLevel()
         {
             PauseGame = true;
+            _isActiveBattle = false;
 
             int money = _playerData.CurrentHealth +
                         _playerData.CurrentHealth * (SceneManager.GetActiveScene().buildIndex / _levelMultiplier);
@@ -229,6 +229,8 @@ namespace RunnerAirplane.Core
         private void GameOver()
         {
             PauseGame = true;
+            _isActiveBattle = false;
+            
             _levelMenu.GameOver();
         }
     }

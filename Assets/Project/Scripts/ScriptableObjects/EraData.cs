@@ -1,4 +1,5 @@
 using System;
+using RunnerAirplane.Gameplay;
 using UnityEngine;
 
 namespace RunnerAirplane.ScriptableObjects
@@ -8,6 +9,6 @@ namespace RunnerAirplane.ScriptableObjects
     {
         public int MinValue;
         public int MaxValue;
-        public GameObject Prefab;
+        public Technique Prefab;
     }
 }

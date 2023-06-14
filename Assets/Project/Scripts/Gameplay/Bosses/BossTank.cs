@@ -4,10 +4,15 @@ using RunnerAirplane.Gameplay.Weapons;
 
 namespace RunnerAirplane.Gameplay.Bosses
 {
-    [RequireComponent(typeof(MovementToPoint))]
     public class BossTank : Boss
     {
-        private MovementToPoint _movementToPoint;
+        private bool _isMoving;
+        [SerializeField] private Transform _targetMovementTransform;
+        [SerializeField] private float _speedMovement;
+        [SerializeField] private float _speedTurn;
+        
+        [Space]
+        [SerializeField] private SpyingPlayer _spyingPlayer;
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
         
@@ -27,13 +32,14 @@ namespace RunnerAirplane.Gameplay.Bosses
 
         private void Awake()
         {
-            _movementToPoint = GetComponent<MovementToPoint>();
             _timeStartAttack1 = Time.time + _delayStartAttack;
         }
         
         public override void StartBattle()
         {
-            _movementToPoint.enabled = true;
+            _isMoving = true;
+            
+            _spyingPlayer.IsTurning = true;
         }
 
         public override void EndBattle()
@@ -41,16 +47,35 @@ namespace RunnerAirplane.Gameplay.Bosses
             _rocketLauncher.IsActive = false;
             _shotgun.IsActive = false;
             
-            _movementToPoint.enabled = false;
+            _isMoving = false;
         }
 
         private void Update()
         {
+            Movement();
+            
             StartFire1();
             TryEndAttack1();
             
             StartFire2();
             TryEndAttack2();
+        }
+
+        private void Movement()
+        {
+            if (!_isMoving)
+                return;
+            
+            Turn();
+            float stepX = (_targetMovementTransform.position - transform.position).normalized.x;
+            transform.position += Vector3.right * stepX * _speedMovement * Time.deltaTime;
+        }
+
+        private void Turn()
+        {
+            Vector3 direction = _targetMovementTransform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, _speedTurn * Time.deltaTime);
         }
 
         private void StartFire1()
@@ -87,7 +112,7 @@ namespace RunnerAirplane.Gameplay.Bosses
                 || _timeStartAttack2 > Time.time
                 || _timeStartAttack2 == 0f)
                 return;
-            
+
             _shotgun.IsActive = true;
             _isActiveAttack2 = true;
             
@@ -99,7 +124,7 @@ namespace RunnerAirplane.Gameplay.Bosses
             if (!_isActiveAttack2
                 || _timeEndAttack2 > Time.time)
                 return;
-            
+
             _shotgun.IsActive = false;
             _isActiveAttack2 = false;
             

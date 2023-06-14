@@ -71,7 +71,8 @@ namespace RunnerAirplane.Gameplay.Bosses
         private void Movement()
         {
             Turn();
-            transform.position += transform.forward * _speedMovement * Time.deltaTime;
+            float stepX = (_targetMovementTransform.position - transform.position).normalized.x;
+            transform.position += Vector3.right * stepX * _speedMovement * Time.deltaTime;
             
             _machineGun.transform.LookAt(_playerTransform);
             _homingRocketLauncher.transform.LookAt(_playerTransform);

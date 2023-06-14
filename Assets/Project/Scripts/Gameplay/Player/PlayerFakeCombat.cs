@@ -4,6 +4,9 @@ using RunnerAirplane.Core.Pool;
 using RunnerAirplane.Gameplay.Bullets;
 using RunnerAirplane.Gameplay.Enemies;
 using RunnerAirplane.Gameplay.Objects;
+using RunnerAirplane.Core.Audio;
+
+using AudioType = RunnerAirplane.Core.Audio.AudioType;
 
 namespace RunnerAirplane.Gameplay.Player
 {
@@ -11,6 +14,8 @@ namespace RunnerAirplane.Gameplay.Player
     [RequireComponent(typeof(PlayerData))]
     public class PlayerFakeCombat : MonoBehaviour
     {
+        private AudioHandler _audioHandler;
+        
         [SerializeField] private PoolBullets _poolBullets;
         
         [Space]
@@ -53,6 +58,11 @@ namespace RunnerAirplane.Gameplay.Player
         {
             _playerMovement = GetComponent<PlayerMovement>();
             _playerData = GetComponent<PlayerData>();
+        }
+        
+        private void Start()
+        {
+            _audioHandler = FindObjectOfType<AudioHandler>();
         }
 
         private void Update()
@@ -99,6 +109,8 @@ namespace RunnerAirplane.Gameplay.Player
             _diedEnemy = _fakeEnemy;
             _fakeEnemy = null;
             
+            _audioHandler.PlayBaseSound(AudioType.SoundRocket);
+            
             _playerData.IsPresenceDisposableRocket = false;
         }
 
@@ -127,6 +139,8 @@ namespace RunnerAirplane.Gameplay.Player
             Bullet bullet2 = _poolBullets.GetBullet(BulletType.FakeBullet);
             bullet1.Init(_gun1.transform.position, _fakeEnemy.transform, 0, true);
             bullet2.Init(_gun2.transform.position, _fakeEnemy.transform, 0, true);
+            
+            _audioHandler.PlayBaseSound(AudioType.SoundBullet);
 
             _nextFireTime = Time.time + _shotDelay;
         }
@@ -142,6 +156,8 @@ namespace RunnerAirplane.Gameplay.Player
 
             Bullet bullet = _poolBullets.GetBullet(BulletType.FakeRocket);
             bullet.Init(_rocketLauncher.transform.position, _fakeEnemy.transform, 0, true);
+            
+            _audioHandler.PlayBaseSound(AudioType.SoundRocket);
             
             _isEmpty = true;
         }

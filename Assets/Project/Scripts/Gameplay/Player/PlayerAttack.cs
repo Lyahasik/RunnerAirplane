@@ -3,15 +3,20 @@ using UnityEngine;
 
 using RunnerAirplane.Gameplay.Weapons;
 using RunnerAirplane.UI.Level;
+using RunnerAirplane.Core.Audio;
 
 namespace RunnerAirplane.Gameplay.Player
 {
     public class PlayerAttack : MonoBehaviour
     {
+        private AudioHandler _audioHandler;
+        
         [SerializeField] private List<MachineGun> _machineGuns;
         [SerializeField] private WorldLookAt _lookAtUI;
         [SerializeField] private RectTransform _rectTransformHealth;
 
+        [SerializeField] private bool _isShooting = true;
+        
         private bool _isActive;
 
         public bool IsActive
@@ -27,8 +32,18 @@ namespace RunnerAirplane.Gameplay.Player
             }   
         }
 
+        private void Start()
+        {
+            _audioHandler = FindObjectOfType<AudioHandler>();
+            
+            _machineGuns[0].Init(_audioHandler);
+        }
+
         private void Attack()
         {
+            if (!_isShooting)
+                return;
+            
             foreach (MachineGun machineGun in _machineGuns)
             {
                 machineGun.IsActive = true;

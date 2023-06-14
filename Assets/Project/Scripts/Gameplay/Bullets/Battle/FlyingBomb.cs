@@ -1,14 +1,19 @@
 using UnityEngine;
 
 using RunnerAirplane.Core;
+using RunnerAirplane.Core.Audio;
 using RunnerAirplane.Gameplay.Objects;
 using RunnerAirplane.Gameplay.Player;
+
+using AudioType = RunnerAirplane.Core.Audio.AudioType;
 
 namespace RunnerAirplane.Gameplay.Bullets.Battle
 {
     public class FlyingBomb : Bullet
     {
         private const float _bottomLineDestruction = 0f;
+
+        private AudioHandler _audioHandler;
         
         private int _damage;
         [SerializeField] private float _fallingSpeed;
@@ -33,6 +38,11 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             _damage = damage;
 
             _isActive = true;
+        }
+
+        private void Start()
+        {
+            _audioHandler = FindObjectOfType<AudioHandler>();
         }
 
         private void Update()
@@ -64,6 +74,7 @@ namespace RunnerAirplane.Gameplay.Bullets.Battle
             
             _poolBullets.ReturnBullet(this, BulletType.FlyingBomb);
             _bomb.SetActive(false);
+            _audioHandler.PlayBattleSound(AudioType.SoundExplosionRocket);
         }
 
         public override void Reset(Vector3 newPosition)

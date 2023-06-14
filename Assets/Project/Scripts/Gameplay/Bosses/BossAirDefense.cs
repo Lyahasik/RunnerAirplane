@@ -7,7 +7,7 @@ namespace RunnerAirplane.Gameplay.Bosses
     [RequireComponent(typeof(TurnRange))]
     public class BossAirDefense : Boss
     {
-        private TurnRange _turnRange;
+        [SerializeField] private TurnRange _turnRange;
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
         
@@ -27,7 +27,6 @@ namespace RunnerAirplane.Gameplay.Bosses
 
         private void Awake()
         {
-            _turnRange = GetComponent<TurnRange>();
             _timeStartAttack1 = Time.time + _delayStartAttack;
         }
 

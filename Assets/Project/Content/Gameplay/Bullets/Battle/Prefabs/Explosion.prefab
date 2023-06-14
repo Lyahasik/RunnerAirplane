@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8369c3a273c92814494615647084171d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 5
+  _type: 12
   _particleSystem: {fileID: 407512343222810511}
   _lifeTime: 0.5
 --- !u!1001 &8802116359233137622
@@ -138,6 +138,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233348973293765094, guid: 12f348b90b49c4c4d9316d0535bd78e2,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8901727539320926961, guid: 12f348b90b49c4c4d9316d0535bd78e2,
         type: 3}

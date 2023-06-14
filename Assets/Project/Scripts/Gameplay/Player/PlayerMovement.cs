@@ -19,7 +19,6 @@ namespace RunnerAirplane.Gameplay.Player
         [SerializeField] private float _speedAlignment;
 
         private bool _isFakeFakeCombating;
-        private bool _isBattle = true;
 
         public float RangeHorizontalMovement
         {
@@ -35,11 +34,6 @@ namespace RunnerAirplane.Gameplay.Player
         {
             get => _isFakeFakeCombating;
             set => _isFakeFakeCombating = value;
-        }
-
-        public bool IsBattle
-        {
-            set => _isBattle = value;
         }
 
         private void Update()
@@ -77,17 +71,11 @@ namespace RunnerAirplane.Gameplay.Player
             TakeStepTurn(step.x);
 
             float newPositionX = Mathf.Clamp(transform.position.x + step.x, -_rangeHorizontalMovement, _rangeHorizontalMovement);
+            float newPositionZ = Mathf.Clamp(transform.position.z + step.z, -_rangeVerticalMovement, _rangeVerticalMovement);
             
             Vector3 newPosition;
-            if (_isBattle)
-            {
-                float newPositionZ = Mathf.Clamp(transform.position.z + step.z, -_rangeVerticalMovement, _rangeVerticalMovement);
-                newPosition = new Vector3(newPositionX, transform.position.y, newPositionZ);
-            }
-            else
-            {
-                newPosition = new Vector3(newPositionX, transform.position.y, transform.position.z);
-            }
+            newPosition = new Vector3(newPositionX, transform.position.y, newPositionZ);
+
             transform.position = newPosition;
         }
 

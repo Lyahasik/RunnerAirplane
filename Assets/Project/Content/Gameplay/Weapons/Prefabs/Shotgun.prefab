@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolBullets: {fileID: 0}
   _bulletType: 5
+  _audioType: 24
   _isPlayerWeapon: 0
   _muzzle: {fileID: 8688316443931988884}
   _damage: 60

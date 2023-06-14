@@ -6,6 +6,9 @@ namespace RunnerAirplane.Gameplay.Enemies
 {
     public class AirDefense : FakeEnemy
     {
+        [SerializeField] private GameObject _decorateBuild;
+        
+        [Space]
         [SerializeField] private float _fireDistance;
         [SerializeField] private GameObject _weapon;
         [SerializeField] private float _delayDamage;
@@ -17,6 +20,13 @@ namespace RunnerAirplane.Gameplay.Enemies
             base.Awake();
             
             _bulletType = BulletType.FakeRocket;
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+
+            _decorateBuild.transform.parent = transform.parent;
         }
         
         protected override void Update()

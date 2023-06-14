@@ -7,7 +7,13 @@ namespace RunnerAirplane.Gameplay.Bosses
 {
     public class BossSpaceTank : Boss
     {
-        private MovementToPoint _movementToPoint;
+        private bool _isMoving;
+        [SerializeField] private Transform _targetMovementTransform;
+        [SerializeField] private float _speedMovement;
+        [SerializeField] private float _speedTurn;
+        
+        [Space]
+        [SerializeField] private SpyingPlayer _spyingPlayer;
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
         
@@ -27,18 +33,16 @@ namespace RunnerAirplane.Gameplay.Bosses
 
         private void Awake()
         {
-            _movementToPoint = GetComponent<MovementToPoint>();
             _timeStartAttack1 = Time.time + _delayStartAttack;
         }
 
         public override void StartBattle()
         {
-            _movementToPoint.enabled = true;
+            _isMoving = true;
         }
 
         public override void EndBattle()
         {
-            
             foreach (MachineGun machineGun in _machineGuns)
             {
                 machineGun.IsActive = false;
@@ -48,16 +52,35 @@ namespace RunnerAirplane.Gameplay.Bosses
                 laserGun.IsActive = false;
             }
             
-            _movementToPoint.enabled = false;
+            _isMoving = false;
         }
 
         private void Update()
         {
+            Movement();
+            
             StartFire1();
             TryEndAttack1();
             
             StartFire2();
             TryEndAttack2();
+        }
+
+        private void Movement()
+        {
+            if (!_isMoving)
+                return;
+            
+            Turn();
+            float stepX = (_targetMovementTransform.position - transform.position).normalized.x;
+            transform.position += Vector3.right * stepX * _speedMovement * Time.deltaTime;
+        }
+
+        private void Turn()
+        {
+            Vector3 direction = _targetMovementTransform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, _speedTurn * Time.deltaTime);
         }
 
         private void StartFire1()
@@ -73,6 +96,7 @@ namespace RunnerAirplane.Gameplay.Bosses
                 machineGun.IsActive = true;
             }
             _isActiveAttack1 = true;
+            _spyingPlayer.IsTurning = true;
             
             _timeEndAttack1 = Time.time + _timeAttack1;
         }
@@ -106,6 +130,7 @@ namespace RunnerAirplane.Gameplay.Bosses
                 laserGun.IsActive = true;
             }
             _isActiveAttack2 = true;
+            _spyingPlayer.IsTurning = false;
             
             _timeEndAttack2 = Time.time + _timeAttack2;
         }

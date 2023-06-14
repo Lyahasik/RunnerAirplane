@@ -99,17 +99,13 @@ namespace RunnerAirplane.UI.Main.Angar
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("Down");
             _pointDown = eventData.pressPosition;
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            Debug.Log("Up");
-
-            if (Input.touchCount == 0
-                && (_isUnlock
-                || ProcessingProgress.GetNumberMoney() >= _price))
+            if (_isUnlock
+                || ProcessingProgress.GetNumberMoney() >= _price)
                 EventSystem.current.SetSelectedGameObject(gameObject, eventData);
         }
 

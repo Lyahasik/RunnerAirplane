@@ -162,7 +162,7 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Bosses/BossAirshipScene.unity
     guid: a7f8198e2e7177644a1ba42992da8075
   - enabled: 1
-    path: Assets/Project/Scenes/Bosses/BossSpaceTankScene.unity
+    path: Assets/Project/Scenes/Bosses/BossBattleshipScene.unity
     guid: 31d1cda6d8e6359468f0bd4142a83c35
   - enabled: 1
     path: Assets/Project/Scenes/Bosses/BossDoubleTankScene.unity
@@ -171,6 +171,6 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Bosses/BossBMPScene.unity
     guid: 59adde97eb850994cbd67cab23e5d5b5
   - enabled: 1
-    path: Assets/Project/Scenes/Bosses/BossRocketAttackScene.unity
+    path: Assets/Project/Scenes/Bosses/BossBomberScene.unity
     guid: 2654f6c99c56dd04ab40378e70b2fdf2
   m_configObjects: {}

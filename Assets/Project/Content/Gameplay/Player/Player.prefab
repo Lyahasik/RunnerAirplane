@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 7949898775609578642}
   - component: {fileID: 152089819}
   - component: {fileID: 2098357127554025238}
-  - component: {fileID: 1001710176862923140}
+  - component: {fileID: 6654208554490576085}
   - component: {fileID: 152089817}
   - component: {fileID: 152089818}
   - component: {fileID: 8339945348571600856}
@@ -395,8 +395,8 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 1.5}
---- !u!136 &1001710176862923140
-CapsuleCollider:
+--- !u!65 &6654208554490576085
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -405,10 +405,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 3.9398317
-  m_Direction: 0
-  m_Center: {x: 0, y: 0, z: 1}
+  serializedVersion: 2
+  m_Size: {x: 3.8200226, y: 4.6657557, z: 0.78628993}
+  m_Center: {x: 0, y: -0.06197238, z: 0.9988611}
 --- !u!114 &152089817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +439,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startHealth: 20
   _textHealth: {fileID: 4653451137710438894}
-  _explosionScale: 5
   _listSelectedEra: {fileID: 11400000, guid: d7b6e45c2b826044f9e6bbaf3f7e50c6, type: 2}
 --- !u!114 &8339945348571600856
 MonoBehaviour:

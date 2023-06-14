@@ -7,14 +7,17 @@ namespace RunnerAirplane.Gameplay.Bosses
 {
     public class BossRocketAttack : Boss
     {
+        [SerializeField] private float _timeLife;
+        private float _timeEndLife;
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
-        
+
         [Space]
         [SerializeField] private List<RocketLauncher> _rocketLaunchers;
         [SerializeField] private float _timeAttack;
         [Range(1, 100)] [SerializeField] private int _probability;
         [SerializeField] private int _numberLaunches;
+        
         private float _timeStartAttack;
         private float _timeEndAttack;
         private bool _isActiveAttack;
@@ -24,7 +27,10 @@ namespace RunnerAirplane.Gameplay.Bosses
             _timeStartAttack = Time.time + _delayStartAttack;
         }
 
-        public override void StartBattle() {}
+        public override void StartBattle()
+        {
+            _timeEndLife = Time.time + _timeLife;
+        }
 
         public override void EndBattle()
         {
@@ -38,6 +44,8 @@ namespace RunnerAirplane.Gameplay.Bosses
         {
             StartFire();
             TryEndAttack();
+
+            TryFinishLife();
         }
 
         private void StartFire()
@@ -74,6 +82,12 @@ namespace RunnerAirplane.Gameplay.Bosses
             _isActiveAttack = false;
 
             _timeStartAttack = Time.time + _rechargeAttack;
+        }
+
+        private void TryFinishLife()
+        {
+            if (_timeEndLife <= Time.time)
+                Destroy(gameObject);
         }
     }
 }

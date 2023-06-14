@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RunnerAirplane.Gameplay;
 using UnityEngine;
 
 namespace RunnerAirplane.ScriptableObjects
@@ -8,6 +9,6 @@ namespace RunnerAirplane.ScriptableObjects
     public class ListEraData
     {
         public int Number;
-        public List<GameObject> ListPrefabs;
+        public List<Technique> ListPrefabs;
     }
 }

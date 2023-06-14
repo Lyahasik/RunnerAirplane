@@ -15,29 +15,28 @@ MonoBehaviour:
   _listEra:
   - MinValue: 0
     MaxValue: 50
-    Prefab: {fileID: 9126265856463357428, guid: 0a8c4857c40423441acb09b4acaa4202,
+    Prefab: {fileID: 5264741754910950697, guid: 0a8c4857c40423441acb09b4acaa4202,
       type: 3}
   - MinValue: 51
     MaxValue: 100
-    Prefab: {fileID: 9126265856463357428, guid: 8a44cf04a506b2842acab1a29ddb9818,
+    Prefab: {fileID: -8516702933225909761, guid: 8a44cf04a506b2842acab1a29ddb9818,
       type: 3}
   - MinValue: 101
     MaxValue: 150
-    Prefab: {fileID: 9126265856463357428, guid: 3cf88c8373263dd4d9f4854e88e4bcd8,
+    Prefab: {fileID: -7643568736749801868, guid: 3cf88c8373263dd4d9f4854e88e4bcd8,
       type: 3}
   - MinValue: 151
     MaxValue: 200
-    Prefab: {fileID: 9126265856463357428, guid: 771e8a2bb47feb84e9cf847fed9f3ae9,
-      type: 3}
+    Prefab: {fileID: -37078200806584033, guid: 771e8a2bb47feb84e9cf847fed9f3ae9, type: 3}
   - MinValue: 201
     MaxValue: 250
-    Prefab: {fileID: 9126265856463357428, guid: c1c9423464c112a498052c9f418df057,
+    Prefab: {fileID: -3186976583999608986, guid: c1c9423464c112a498052c9f418df057,
       type: 3}
   - MinValue: 251
     MaxValue: 300
-    Prefab: {fileID: 9126265856463357428, guid: ac990bf944585904a9c82c1d01f1e9db,
+    Prefab: {fileID: 1449857005118175962, guid: ac990bf944585904a9c82c1d01f1e9db,
       type: 3}
   - MinValue: 301
     MaxValue: 10000000
-    Prefab: {fileID: 9126265856463357428, guid: a11200884f6711f47b1bb4e855ef0a8d,
+    Prefab: {fileID: 3349907166460217335, guid: a11200884f6711f47b1bb4e855ef0a8d,
       type: 3}

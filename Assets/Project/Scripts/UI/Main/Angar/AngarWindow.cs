@@ -1,13 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+using RunnerAirplane.Core.Audio;
 using RunnerAirplane.Gameplay.Progress;
+using RunnerAirplane.Gameplay.Player;
 using RunnerAirplane.ScriptableObjects;
+
+using AudioType = RunnerAirplane.Core.Audio.AudioType;
 
 namespace RunnerAirplane.UI.Main.Angar
 {
     public class AngarWindow : MonoBehaviour
     {
+        private AudioHandler _audioHandler;
+        private PlayerData _playerData;
+        
         [SerializeField] private Image _selectedSkinImage;
         [SerializeField] private FullListEraData _fullListEraData;
         [SerializeField] private ListSelectedEraData _listSelectedEraData;
@@ -17,6 +24,12 @@ namespace RunnerAirplane.UI.Main.Angar
         private void Awake()
         {
             ProcessingProgress.PrepareSkins();
+        }
+
+        private void Start()
+        {
+            _audioHandler = FindObjectOfType<AudioHandler>();
+            _playerData = FindObjectOfType<PlayerData>();
         }
 
         private void OnDisable()
@@ -76,8 +89,12 @@ namespace RunnerAirplane.UI.Main.Angar
             if (!_currentSkin.IsUnlock)
                 return;
             
+            _audioHandler.PlayBaseSound(AudioType.SoundSelectSkin);
+            
             ProcessingProgress.ActivateSkin(_currentSkin.EraNumber, _currentSkin.SkinNumber);
             UpdateSkinPrefab(_currentSkin.EraNumber, _currentSkin.SkinNumber);
+            
+            _playerData.TryUpdateSkin();
         }
     }
 }

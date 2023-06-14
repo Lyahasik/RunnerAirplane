@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelMenu: {fileID: 0}
+  _menuWindow: {fileID: 0}
   _speedMove: 10
   _road: {fileID: 0}
+  _offsetDown: 18
   _isMovingBattlefield: 0
   _speedMoveBattlefield: 0
   _battlefield: {fileID: 0}
