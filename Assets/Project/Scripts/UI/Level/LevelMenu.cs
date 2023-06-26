@@ -54,9 +54,9 @@ namespace RunnerAirplane.UI.Level
             SceneController.PreviousScene();
         }
 
-        public void NextScene()
+        public void NextLevel()
         {
-            SceneController.NextScene();
+            SceneController.NextLevel();
         }
     }
 }

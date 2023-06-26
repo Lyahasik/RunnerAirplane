@@ -5,6 +5,8 @@ namespace RunnerAirplane.Core
 {
     public class SceneController : MonoBehaviour
     {
+        private const int _numberLevels = 50;
+        
         public void Restart()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -25,9 +27,12 @@ namespace RunnerAirplane.Core
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
 
-        public static void NextScene()
+        public static void NextLevel()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            
+            if (nextIndex <= _numberLevels)
+                SceneManager.LoadScene(nextIndex);
         }
     }
 }

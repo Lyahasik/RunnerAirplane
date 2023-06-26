@@ -258,8 +258,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -527,8 +527,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -1065,8 +1065,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -1107,7 +1107,6 @@ RectTransform:
   m_Children:
   - {fileID: 3501769995351255797}
   - {fileID: 3501769994083070095}
-  - {fileID: 4433578497665168998}
   - {fileID: 3501769995316679921}
   - {fileID: 3501769995449740031}
   m_Father: {fileID: 3501769995320241159}
@@ -1551,8 +1550,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartIndexScene
         m_Mode: 3
         m_Arguments:
@@ -1685,8 +1684,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -1708,6 +1707,7 @@ GameObject:
   - component: {fileID: 5616650267583491064}
   - component: {fileID: 7971516175600295293}
   - component: {fileID: 2950013397000456823}
+  - component: {fileID: 251737312898237569}
   m_Layer: 5
   m_Name: DemoWindow
   m_TagString: Untagged
@@ -1789,6 +1789,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &251737312898237569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934874248818989405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac450005dba1a14781ee4118d337290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1982699233151366003
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,7 +3036,7 @@ RectTransform:
   m_Children:
   - {fileID: 3501769994398305817}
   m_Father: {fileID: 7143658432095114200}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3202,6 +3214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _presentation: {fileID: 0}
+  _buttonNoAds: {fileID: 3501769995351255796}
   _settings: {fileID: 6754291588161807997}
 --- !u!114 &6338745962802159839
 MonoBehaviour:
@@ -3235,7 +3248,7 @@ GameObject:
   - component: {fileID: 3501769995351255787}
   - component: {fileID: 3501769995351255786}
   m_Layer: 5
-  m_Name: AdsButton
+  m_Name: NoAdsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3403,7 +3416,7 @@ RectTransform:
   m_Children:
   - {fileID: 3501769995570343756}
   m_Father: {fileID: 7143658432095114200}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3837,8 +3850,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -4649,7 +4662,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6338745962802159839}
         m_TargetAssemblyTypeName: RunnerAirplane.UI.Level.LevelMenu, Assembly-CSharp
-        m_MethodName: NextScene
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5129,8 +5142,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -5263,8 +5276,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -5706,8 +5719,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -5840,8 +5853,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartIndexScene
         m_Mode: 3
         m_Arguments:
@@ -6131,8 +6144,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -6617,7 +6630,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6338745962802159839}
         m_TargetAssemblyTypeName: RunnerAirplane.UI.Level.LevelMenu, Assembly-CSharp
-        m_MethodName: NextScene
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7307,8 +7320,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartIndexScene
         m_Mode: 3
         m_Arguments:
@@ -7441,8 +7454,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -7711,8 +7724,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartIndexScene
         m_Mode: 3
         m_Arguments:
@@ -8116,8 +8129,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RunnerAirplane.Core.SceneController, Assembly-CSharp
+      - m_Target: {fileID: 251737312898237569}
+        m_TargetAssemblyTypeName: RunnerAirplane.DemoWindow, Assembly-CSharp
         m_MethodName: StartIndexScene
         m_Mode: 3
         m_Arguments:
@@ -8686,14 +8699,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: AdsWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 286716746074573644, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
@@ -8703,7 +8726,17 @@ PrefabInstance:
       objectReference: {fileID: 4689227711382271019}
     - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3501769995320241156}
+    - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
@@ -8713,12 +8746,97 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: AdsToBuy
+      objectReference: {fileID: 0}
+    - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: RunnerAirplane.UI.Main.SwitchObjects, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RunnerAirplane.UI.Main.MainWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 286716746943870786, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875171342310610833, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875171342310610833, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875171342310610833, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3501769995320241156}
+    - target: {fileID: 2875171342310610833, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875171342310610833, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AdsToBuy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875171342310610833, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RunnerAirplane.UI.Main.MainWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875171342310610833, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962555615496859313, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962555615496859313, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962555615496859313, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3501769995320241156}
+    - target: {fileID: 7962555615496859313, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962555615496859313, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AdsToBuy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962555615496859313, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RunnerAirplane.UI.Main.MainWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962555615496859313, guid: 706103f6eb34ae847b774c6677508b7c,
+        type: 3}
+      propertyPath: onPurchaseComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10570,159 +10688,4 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3837660746875651475, guid: 2653d660feb213240898fda496ce6bc1,
     type: 3}
   m_PrefabInstance: {fileID: 7771196284504080502}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &9041728032173973872
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7143658432095114200}
-    m_Modifications:
-    - target: {fileID: 717284137696551834, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.30004883
-      objectReference: {fileID: 0}
-    - target: {fileID: 3006371717081929440, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.2000122
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.24379167
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.24379167
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 260
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 440
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -141.41003
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5532759855490767810, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_Name
-      value: UpLevelButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 5532759855490767810, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6495741902778307315, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.29626465
-      objectReference: {fileID: 0}
-    - target: {fileID: 6495741902778307315, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.28118896
-      objectReference: {fileID: 0}
-    - target: {fileID: 7070861261747477621, guid: 1bbae58bf149c334b9bad83b8465071e,
-        type: 3}
-      propertyPath: _closing
-      value: 
-      objectReference: {fileID: 3501769995320241158}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1bbae58bf149c334b9bad83b8465071e, type: 3}
---- !u!224 &4433578497665168998 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4683065876093572886, guid: 1bbae58bf149c334b9bad83b8465071e,
-    type: 3}
-  m_PrefabInstance: {fileID: 9041728032173973872}
   m_PrefabAsset: {fileID: 0}

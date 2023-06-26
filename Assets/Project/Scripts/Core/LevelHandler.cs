@@ -23,6 +23,7 @@ namespace RunnerAirplane.Core
         private const int _levelMultiplier = 10;
         
         private AudioHandler _audioHandler;
+        private AdsHandler _adsHandler;
         
         [SerializeField] private LevelMenu _levelMenu;
         [SerializeField] private GameObject _menuWindow;
@@ -68,6 +69,8 @@ namespace RunnerAirplane.Core
         {
             _audioHandler = FindObjectOfType<AudioHandler>();
             _audioHandler.PlayMusic(AudioType.MusicMenu);
+
+            _adsHandler = FindObjectOfType<AdsHandler>();
                 
             _camera = Camera.main;
             _startCameraPosition = _camera.transform.position;
@@ -78,6 +81,8 @@ namespace RunnerAirplane.Core
             _playerAttack = _player.GetComponent<PlayerAttack>();
 
             _clouds.transform.Translate(Vector3.down * _offsetDown);
+
+            TryShowVideoAds();
         }
 
         private void OnEnable()
@@ -111,6 +116,12 @@ namespace RunnerAirplane.Core
             Movement();
             PrepareBattle();
             TryFinishLevel();
+        }
+
+        private void TryShowVideoAds()
+        {
+            if (_bosses.Count > 0)
+                _adsHandler.ShowAdsVideo();
         }
 
         private void Movement()
@@ -217,13 +228,14 @@ namespace RunnerAirplane.Core
             PauseGame = true;
             _isActiveBattle = false;
 
-            int money = _playerData.CurrentHealth +
-                        _playerData.CurrentHealth * (SceneManager.GetActiveScene().buildIndex / _levelMultiplier);
+            int buildIndex = SceneManager.GetActiveScene().buildIndex;
+
+            int money = _playerData.CurrentHealth + buildIndex * 10;
             ProcessingProgress.UpdateNumberMoney(money);
             _levelMenu.SuccessGame(money);
 
             ProcessingProgress.RememberLastStartHealth(_playerData.StartHealth);
-            ProcessingProgress.RememberLastLevel(SceneManager.GetActiveScene().buildIndex);
+            ProcessingProgress.RememberLastLevel(buildIndex);
         }
 
         private void GameOver()

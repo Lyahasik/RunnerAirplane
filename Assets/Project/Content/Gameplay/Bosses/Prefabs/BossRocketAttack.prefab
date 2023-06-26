@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32621390c34e55f4bbe965ec0abc9255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeLife: 30
   _rechargeAttack: 0.5
   _delayStartAttack: 1
   _rocketLaunchers:

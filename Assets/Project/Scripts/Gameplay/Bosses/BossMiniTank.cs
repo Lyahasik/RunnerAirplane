@@ -7,6 +7,7 @@ namespace RunnerAirplane.Gameplay.Bosses
     public class BossMiniTank : Boss
     {
         private MovementToPoint _movementToPoint;
+        [SerializeField] private SpyingPlayer _spyingPlayer;
         [SerializeField] private float _rechargeAttack;
         [SerializeField] private float _delayStartAttack;
         
@@ -40,6 +41,8 @@ namespace RunnerAirplane.Gameplay.Bosses
         public override void StartBattle()
         {
             _movementToPoint.enabled = true;
+            
+            _spyingPlayer.IsTurning = true;
         }
 
         public override void EndBattle()
@@ -48,6 +51,8 @@ namespace RunnerAirplane.Gameplay.Bosses
             _bombardment.IsActive = false;
             
             _movementToPoint.enabled = false;
+            
+            _spyingPlayer.IsTurning = false;
         }
 
         private void Update()

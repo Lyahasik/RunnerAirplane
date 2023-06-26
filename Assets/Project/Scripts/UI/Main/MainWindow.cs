@@ -8,12 +8,18 @@ namespace RunnerAirplane.UI.Main
     {
         [SerializeField] private GameObject _presentation;
 
+        [Space]
+        [SerializeField] private GameObject _buttonNoAds;
         [SerializeField] private Settings _settings;
 
         private void OnEnable()
         {
             if (_presentation)
                 _presentation.SetActive(true);
+            
+            if (AdsHandler.IsPurchased)
+                _buttonNoAds.SetActive(false);
+            
             _settings.UpdateSettings();
         }
 
@@ -22,11 +28,16 @@ namespace RunnerAirplane.UI.Main
             if (_presentation)
                 _presentation.SetActive(false);
         }
-        
+
+        public void AdsToBuy()
+        {
+            IapHandler.Single.BuyNoAds();
+            _buttonNoAds.SetActive(false);
+        }
+
         public void ResetGame()
         {
             ProcessingProgress.ResetAll();
-            ProcessingProgress.UpdateNumberMoney(1000);
         }
     }
 }
