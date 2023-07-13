@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using RunnerAirplane.Core;
+using RunnerAirplane.Gameplay.Progress;
 using RunnerAirplane.UI.Main;
 
 namespace RunnerAirplane.UI.Level
@@ -57,6 +58,12 @@ namespace RunnerAirplane.UI.Level
         public void NextLevel()
         {
             SceneController.NextLevel();
+        }
+
+        public void StartOverGame()
+        {
+            ProcessingProgress.ResetAll();
+            _sceneController.StartLevel(1);
         }
     }
 }
